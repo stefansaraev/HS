@@ -1,0 +1,16 @@
+diff --git a/libstdc++-v3/configure b/libstdc++-v3/configure
+index 9f9c5a241..120204db4 100755
+--- a/libstdc++-v3/configure
++++ b/libstdc++-v3/configure
+@@ -4149,6 +4149,11 @@ if { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_link\""; } >&5
+ else
+   gcc_no_link=yes
+ fi
++
++# stupid shst
++gcc_no_link=no
++cross_compiling=yes
++
+ if test x$gcc_no_link = xyes; then
+   # Setting cross_compile will disable run tests; it will
+   # also disable AC_CHECK_FILE but that's generally

@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-2.0-only
+
+. config/options $1
+
+if [ -z "$1" ]; then
+  echo "usage: $0 package_name"
+  exit 1
+fi
+
+check_package $1
+
+if [ "$TARGET" = bootstrap -o "$TARGET" = host ] ; then
+  exit 0
+fi
+
+STAMP=$STAMPS_INSTALL/$PACKAGE_NAME/install_$TARGET
+mkdir -p $STAMPS_INSTALL/$PACKAGE_NAME
+
+[ -f $STAMP ] && exit 0
+
+scripts/build $@
+
+if [ -d $INSTALL ] ; then
+  printf "%${BUILD_INDENT}c ${boldgreen}INSTALL${endcolor}    $PACKAGE_NAME ${boldwhite}($TARGET)${endcolor}\n" ' '
+  export BUILD_INDENT=$((${BUILD_INDENT:-1}+4))
+fi
+
+for p in $(eval echo "\$PKG_DEPENDS_$UPTARGET"); do
+  scripts/install $p
+done
+
+mkdir -p $INSTALL_IMAGE
+
+unset -f pre_install
+unset -f post_install
+
+. $PKG_DIR/package.mk
+
+case "$TARGET" in
+  target)
+    if [ "$(type -t pre_install)" = "function" ]; then
+      pre_install
+    fi
+    if [ -d $INSTALL ] ; then
+      cp -PR $INSTALL/* $INSTALL_IMAGE
+    fi
+    if [ "$(type -t post_install)" = "function" ]; then
+      post_install
+    fi
+    ;;
+  init)
+    if [ -d $INSTALL ] ; then
+      cp -PR $INSTALL/* $INSTALL_IMAGE
+    fi
+    ;;
+esac
+
+touch $STAMP

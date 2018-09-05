@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# SEQ=00
+
+. /etc/profile
+
+case "$1" in
+  start)
+    : | cp -i /etc/config/passwd /storage/.config/passwd 2>/dev/null
+    ;;
+esac
+
+exit 0

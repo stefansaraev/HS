@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-2.0-only
+
+. config/options $1
+
+check_root
+show_config
+
+scripts/checkdeps
+scripts/build toolchain
+
+BUILD_DATE=$(date +%m%d%H%M)
+GIT_ABBREV=$(git log -1 --pretty=format:%h --abbrev=10)
+DISTRO_VERSION=$BUILD_DATE.$GIT_ABBREV
+IMAGE_NAME="HS.$PROJECT.$DISTRO_VERSION"
+
+rm -rf $INSTALL_IMAGE $STAMPS_INSTALL
+
+mkdir -p $INSTALL_IMAGE/boot
+mkdir -p $INSTALL_IMAGE/dev
+mkdir -p $INSTALL_IMAGE/etc
+mkdir -p $INSTALL_IMAGE/proc
+mkdir -p $INSTALL_IMAGE/sys
+mkdir -p $INSTALL_IMAGE/tmp
+mkdir -p $INSTALL_IMAGE/usr
+mkdir -p $INSTALL_IMAGE/storage
+ln -sf usr/bin $INSTALL_IMAGE/bin
+ln -sf usr/sbin $INSTALL_IMAGE/sbin
+
+mkdir -p $INSTALL_IMAGE/var
+ln -sf /tmp $INSTALL_IMAGE/var/run
+
+scripts/install base
+
+echo "HS - $DISTRO_VERSION" >> $INSTALL_IMAGE/etc/issue
+ln -sf issue $INSTALL_IMAGE/etc/motd
+
+if [ -d "$PROJECT_DIR/fs-target" ]; then
+  cp -PR $PROJECT_DIR/fs-target/* $INSTALL_IMAGE
+fi
+
+for SERVICE in $INSTALL_IMAGE/etc/init.d/* ; do
+  SEQ="$(grep SEQ= $SERVICE | cut -d= -f2)"
+  if [ -n "$SEQ" ] ; then
+    ln -sf ../init.d/$(basename $SERVICE) $INSTALL_IMAGE/etc/rc.d/S$SEQ$(basename $SERVICE)
+  fi
+done
+
+mkdir -p $TARGET_IMG
+mksquashfs $INSTALL_IMAGE $TARGET_IMG/$IMAGE_NAME.system -all-root -no-xattrs -noappend -comp xz -b 262144 >/dev/null
+
+(
+cd $BUILD/image/init
+fakeroot -- sh -c \
+  "mkdir -p dev; mknod -m 600 dev/console c 5 1; find . | cpio -H newc -ov -R 0:0 | xz -C crc32 -z -c > $TARGET_IMG/$IMAGE_NAME.init"
+) &>/dev/null
+
+RELEASE_DIR="target/$IMAGE_NAME"
+rm -rf $RELEASE_DIR
+mkdir -p $RELEASE_DIR
+cp $TARGET_IMG/$IMAGE_NAME.system $RELEASE_DIR/root.sqfs
+cp $TARGET_IMG/$IMAGE_NAME.init $RELEASE_DIR/init.xz
+cp -PR $BUILD/*/.boot/* $RELEASE_DIR/
+tar cf $TARGET_IMG/$IMAGE_NAME.tar -C $RELEASE_DIR .
+
+env IMAGE_NAME=$IMAGE_NAME RELEASE_DIR=$RELEASE_DIR scripts/mkimage $1
+
+rm -rf $RELEASE_DIR
+rm -f $TARGET_IMG/$IMAGE_NAME.system
+rm -f $TARGET_IMG/$IMAGE_NAME.init

@@ -1,0 +1,17 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 0000000..2fbe5dd
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,11 @@
++cmake_minimum_required(VERSION 3.13)
++
++project(ArduiPi_OLED)
++
++file(GLOB SOURCES "*.cpp" "*.c")
++file(GLOB HEADERS "*.h")
++
++add_library(ArduiPi_OLED STATIC ${SOURCES} ${HEADERS})
++
++install(TARGETS ArduiPi_OLED ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
++install(FILES ${HEADERS} DESTINATION "${CMAKE_INSTALL_PREFIX}/include")

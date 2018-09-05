@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-2.0-only
+
+. config/options $1
+
+if [ -z "$1" ]; then
+  echo "usage: $0 package_name|-a"
+  exit 1
+fi
+
+if [ "$1" == "-a" ]; then
+  for i in $(find packages/ -type f -name package.mk); do
+    PKG_NAME=""
+    . $i
+    scripts/get $PKG_NAME
+  done
+  exit 0
+fi
+
+[ -n "$PKG_URL" ] && SOURCE_NAME="$(basename $PKG_URL)" || exit 0
+
+STAMP="$ROOT/sources/$1/$SOURCE_NAME.url"
+if [ -f "$STAMP" ]; then
+  exit
+fi
+
+printf "%${BUILD_INDENT}c ${boldcyan}GET${endcolor}      $1\n" ' '
+export BUILD_INDENT=$((${BUILD_INDENT:-1}+4))
+
+mkdir -p sources/$1
+
+WGET_CMD="wget --timeout=30 --tries=2 --no-check-certificate -c -nv --show-progress -P sources/$1"
+NBWGET="1"
+until [ -f "$STAMP" ] || $WGET_CMD $PKG_URL ; do
+  NBWGET=$(($NBWGET+1))
+  if [ "$NBWGET" -gt "2" ]; then
+    echo "*** Cant't get $1 sources : $PKG_URL. Try later ***"
+    exit 1
+  fi
+done
+
+echo $SOURCE_NAME > $STAMP

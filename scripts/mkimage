@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-2.0-only
+
+. config/options $1
+
+# set variables
+MKIMAGE_TMP=$(mktemp -d)
+
+PART1_SIZE=32
+PART1_PART_START=2048
+PART2_SIZE=256 # >= 32 !
+
+DISK_SIZE=$(( $PART1_SIZE + $PART2_SIZE + 4 ))
+DISK="$TARGET_IMG/$IMAGE_NAME.img"
+
+# functions
+cleanup() {
+  echo "image: cleanup..."
+  rm -rf "$MKIMAGE_TMP"
+  echo
+  exit
+}
+
+trap cleanup SIGINT
+
+echo
+echo "image: creating file $(basename $DISK)..."
+dd if=/dev/zero of="$DISK" bs=1M count="$DISK_SIZE" conv=fsync 2>/dev/null
+
+echo "image: creating partition table..."
+/sbin/parted -s "$DISK" mklabel msdos 2>/dev/null
+sync
+
+echo "image: creating part1..."
+SYSTEM_PART_END=$(( ($PART1_SIZE * 1024 * 1024 / 512) + $PART1_PART_START ))
+/sbin/parted -s "$DISK" -a min unit s mkpart primary fat32 $PART1_PART_START $SYSTEM_PART_END 2>/dev/null
+/sbin/parted -s "$DISK" set 1 boot on 2>/dev/null
+sync
+
+echo "image: creating part2..."
+STORAGE_PART_START=$(( $SYSTEM_PART_END + 2048 ))
+STORAGE_PART_END=$(( $STORAGE_PART_START + (( $PART2_SIZE * 1024 * 1024 / 512 )) ))
+/sbin/parted -s "$DISK" -a min unit s mkpart primary ext4 $STORAGE_PART_START $STORAGE_PART_END 2>/dev/null
+sync
+
+echo "image: creating filesystem on part1..."
+OFFSET=$(( $PART1_PART_START * 512 ))
+HEADS=4
+TRACKS=32
+SECTORS=$(( $PART1_SIZE * 1024 * 1024 / 512 / $HEADS / $TRACKS ))
+mformat -i $DISK@@$OFFSET -h $HEADS -t $TRACKS -s $SECTORS ::
+
+echo "image: copying files to part1..."
+mcopy -i $DISK@@$OFFSET -vs $RELEASE_DIR/* :: 2>/dev/null
+
+echo "image: creating filesystem on part2..."
+STORAGE_PART_COUNT=$(( $STORAGE_PART_END - $STORAGE_PART_START + 1 ))
+dd if=/dev/zero of="$MKIMAGE_TMP/part2.ext4" bs=512 skip="$STORAGE_PART_START" count="$STORAGE_PART_COUNT" 2>/dev/null
+/sbin/mke2fs -F -q -t ext4 -m 0 "$MKIMAGE_TMP/part2.ext4" 2>/dev/null
+/sbin/e2fsck -n "$MKIMAGE_TMP/part2.ext4" &>/dev/null
+dd if="$MKIMAGE_TMP/part2.ext4" of="$DISK" bs=512 seek="$STORAGE_PART_START" conv=fsync,notrunc 2>/dev/null
+
+sync
+
+# gzip
+echo "image: compressing..."
+rm -f $DISK.gz
+gzip $DISK
+
+# cleanup
+cleanup

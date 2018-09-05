@@ -1,0 +1,13 @@
+diff --git a/parted/parted.c b/parted/parted.c
+index 9dcdb05..f9546c7 100644
+--- a/parted/parted.c
++++ b/parted/parted.c
+@@ -1560,8 +1560,6 @@ do_resizepart (PedDevice** dev, PedDisk** diskp)
+ 
+         if (!command_line_get_partition (_("Partition number?"), disk, &part))
+                 goto error;
+-        if (!_partition_warn_busy (part))
+-                goto error;
+ 
+         start = part->geom.start;
+         end = oldend = part->geom.end;

@@ -1,0 +1,23 @@
+diff --git a/src/Makefile b/src/Makefile
+index 514593d..17970c5 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -6,13 +6,13 @@
+ # Your platform. See PLATS for possible values.
+ PLAT= guess
+ 
+-CC= gcc -std=gnu99
+-CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
+-LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
+-LIBS= -lm $(SYSLIBS) $(MYLIBS)
++CC ?= gcc -std=gnu99
++CFLAGS += -O2 -Wall -Wextra -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
++LDFLAGS += $(SYSLDFLAGS) $(MYLDFLAGS)
++LIBS += -lm $(SYSLIBS) $(MYLIBS)
+ 
+ AR= ar rcu
+-RANLIB= ranlib
++RANLIB ?= ranlib
+ RM= rm -f
+ UNAME= uname
+ 

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# SEQ=81
+
+. /etc/profile
+
+case "$1" in
+  start)
+    if [ `pidof DisplayServer` ] ; then
+      exit 0
+    fi
+    CONFIG="/storage/.config/MMDVM.ini"
+    if [ -f $CONFIG ] ; then
+      (
+        while : ; do
+          DisplayServer $CONFIG | logger -t displayserver
+        done
+      ) &
+    fi
+    ;;
+  stop)
+    pkill -TERM -f 'DisplayServer'
+    sleep 0.5
+    pkill -9 -f 'DisplayServer|displayserver'
+    ;;
+esac
+
+exit 0

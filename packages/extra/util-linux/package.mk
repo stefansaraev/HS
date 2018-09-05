@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+PKG_NAME="util-linux"
+PKG_VERSION="2.35.1"
+PKG_SITE="http://www.kernel.org/pub/linux/utils/util-linux/"
+PKG_URL="http://www.kernel.org/pub/linux/utils/util-linux/v2.35/$PKG_NAME-$PKG_VERSION.tar.xz"
+
+PKG_CONFIGURE_OPTS_TARGET="
+  --disable-shared --enable-static
+  --disable-gtk-doc
+  --disable-nls
+  --disable-rpath
+  --enable-tls
+  --disable-all-programs
+  --enable-chsh-only-listed
+  --disable-bash-completion
+  --disable-colors-default
+  --disable-pylibmount
+  --disable-pg-bell
+  --disable-use-tty-group
+  --disable-makeinstall-chown
+  --disable-makeinstall-setuid
+  --with-gnu-ld
+  --without-selinux
+  --without-audit
+  --without-udev
+  --without-ncurses
+  --without-ncursesw
+  --without-readline
+  --without-slang
+  --without-tinfo
+  --without-utempter
+  --without-util
+  --without-libz
+  --without-user
+  --without-systemd
+  --without-btrfs
+  --without-smack
+  --without-python
+  --without-systemdsystemunitdir
+  --enable-libuuid
+  --disable-libblkid
+  --disable-libmount
+  --disable-libsmartcols
+  --disable-losetup
+  --disable-fsck
+  --disable-fstrim
+  --disable-blkid
+  --disable-lscpu
+"

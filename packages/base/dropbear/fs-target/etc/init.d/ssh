@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# SEQ=50
+
+. /etc/profile
+
+case "$1" in
+  start)
+    if [ `pidof dropbear` ] ; then
+      exit 0
+    fi
+    (
+      : | cp -i /etc/config/ssh /storage/.config/ssh 2>/dev/null
+      . /storage/.config/ssh
+      if [ -f /storage/.ssh/authorized_keys -a "$SSH_SECURE" == "true" ] ; then
+        SSH_ARGS="-s"
+      fi
+      mkdir -p /storage/.config/dropbear
+      mkdir -p /storage/.ssh
+      dropbear -F -R $SSH_ARGS
+    ) &
+    ;;
+  stop)
+    pkill -TERM -f dropbear
+    ;;
+  restart)
+    "$0" stop
+    "$0" start
+    ;;
+esac
+
+exit 0

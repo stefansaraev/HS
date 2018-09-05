@@ -1,0 +1,24 @@
+#!/bin/sh
+
+case "$1" in
+  deconfig)
+    ip addr flush dev $interface
+    ;;
+  renew|bound)
+    ifconfig $interface $ip ${broadcast:+broadcast $broadcast} ${subnet:+netmask $subnet}
+    if [ -n "$router" ] ; then
+      while ip route del default dev $interface 2>/dev/null; do
+        :
+      done
+      for i in $router ; do
+        ip route add default via $i dev $interface
+      done
+    fi
+    echo -n > /etc/resolv.conf
+    for i in $dns ; do
+      echo nameserver $i >> /etc/resolv.conf
+    done
+    ;;
+esac
+
+exit 0

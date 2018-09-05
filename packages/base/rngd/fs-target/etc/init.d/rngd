@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# SEQ=02
+
+. /etc/profile
+
+case "$1" in
+  start)
+    if [ `pidof rngd` ] ; then
+      exit 0
+    fi
+    rngd
+    ;;
+  stop)
+    pkill -TERM -f rngd
+    ;;
+  restart)
+    "$0" stop
+    "$0" start
+    ;;
+esac
+
+exit 0

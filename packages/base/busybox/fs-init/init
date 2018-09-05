@@ -1,0 +1,56 @@
+#!/bin/sh
+
+error() {
+  echo "### Error: $1 ###"
+  sh </dev/console >/dev/console 2>&1
+}
+
+mount_part() {
+  ERR=1
+  for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
+    mount -o "$3" "$1" "$2" &>/dev/null
+    [ "$?" -eq "0" ] && ERR=0 && break
+    sleep 0.25
+  done
+  [ "$ERR" -ne "0" ] && error "Could not mount $1"
+}
+
+mount_parts() {
+  mount_part "$boot" "/boot" "ro,noatime"
+  mount_part "$disk" "/storage" "rw,noatime"
+}
+
+prepare_sysroot() {
+  cp /boot/root.sqfs /dev/root.sqfs
+  mount_part "/dev/root.sqfs" "/sysroot" "ro,loop"
+
+  mkdir -p /storage/.config
+
+  for mount in boot storage dev sys tmp proc ; do
+    mount --move /$mount /sysroot/$mount
+  done
+}
+
+mkdir -p /dev /proc /sys /tmp /boot /storage /sysroot
+mount -t devtmpfs none /dev
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t tmpfs none /tmp
+
+mkdir -p /dev/pts
+mount -t devpts none /dev/pts
+
+chmod 1777 /tmp
+
+for arg in $(cat /proc/cmdline); do
+  case $arg in
+    boot=*) boot="${arg#*=}" ;;
+    disk=*) disk="${arg#*=}" ;;
+  esac
+done
+
+for STEP in mount_parts prepare_sysroot; do
+  $STEP
+done
+
+exec switch_root /sysroot /sbin/init

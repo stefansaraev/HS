@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-2.0-only
+
+deps="
+  automake autopoint bc bison bzip2 chrpath cmake cpio devscripts fakeroot flex
+  g++ gawk gcc gperf intltool libtool-bin lzop mtools parted patch pkg-config
+  squashfs-tools swig tar unzip wget zip
+  libc6-dev libncurses5-dev zlib1g-dev
+"
+
+need=""
+for dep in $deps ; do
+  dpkg-query -s $dep &>/dev/null
+  if [ $? -ne 0 ] ; then
+    need="$need $dep"
+  fi
+done
+
+if [ -n "$need" ]; then
+  echo "**** Your system lacks the following packages ****"
+  echo $need
+  exit 1
+fi

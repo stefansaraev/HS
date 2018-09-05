@@ -1,0 +1,15 @@
+# build directorys
+/build.*/
+
+# automatically downloaded source files
+/sources/
+/.stamps/
+
+# prebuild target binarys to provide
+/target/
+
+# private working directory
+/.work/
+
+# backup files
+*.orig

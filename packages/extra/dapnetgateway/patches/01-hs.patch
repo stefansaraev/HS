@@ -1,0 +1,35 @@
+From 44d5d6487708cb9f281536559c0b0c8ce0fa0472 Mon Sep 17 00:00:00 2001
+From: Stefan Saraev <stefan@saraev.ca>
+Date: Wed, 28 Nov 2018 19:25:20 +0200
+Subject: [PATCH] [hs] add CMakeLists.txt
+
+---
+ CMakeLists.txt | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 CMakeLists.txt
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 0000000..5e3b268
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,16 @@
++cmake_minimum_required(VERSION 3.13)
++
++set(APP_NAME "DAPNETGateway")
++project(${APP_NAME} CXX)
++
++file(GLOB SOURCES "*.cpp")
++file(GLOB HEADERS "*.h")
++
++SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Os -Wall -std=c++0x -DHAVE_LOG_H $ENV{CXXFLAGS}")
++set(DEPLIBS "")
++
++find_package(Threads REQUIRED QUIET)
++list(APPEND DEPLIBS ${CMAKE_THREAD_LIBS_INIT})
++
++add_executable(${APP_NAME} ${SOURCES} ${HEADERS})
++target_link_libraries(${APP_NAME} ${DEPLIBS})
+-- 
+2.19.1
+

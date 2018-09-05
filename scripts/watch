@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-2.0-only
+
+usage() {
+  echo "  usage: '$0 -l' to list packages"
+  echo "  usage: '$0 -c' to check for updates"
+  echo "         '$0 -a' to update all packagegs"
+  echo "         '$0 [-l|-c] path/to/package.mk"
+}
+
+if [ -z "$1" ] ; then
+  usage
+  exit 0
+fi
+
+case "$1" in
+  -*)
+    if [ -n "$2" ] ; then
+      PKGS="$2"
+    else
+      PKGS="$(find packages -type f -name package.mk | sort)"
+    fi
+    for i in $PKGS; do
+      CHECK=0
+      if [ "$1" == "-c" ] ; then
+        CHECK=1
+      fi
+      PKG_WATCH=""
+      . $i
+      if [ -n "$PKG_WATCH" ] ; then
+        if [ "$1" == "-l" ] ; then
+          printf "* %-18s %-4s %s\n" $PKG_NAME $PKG_WATCH
+        else
+          $0 $i $CHECK
+        fi
+      fi
+    done
+    exit 0
+    ;;
+esac
+
+. config/options
+
+if [ -f "$1" ] ; then
+  REV=""
+  PKG_NAME=""
+  PKG_VERSION=""
+  . $1
+
+  mkdir -p $ROOT/.work/uscan
+  echo "version=3" > $ROOT/.work/uscan/watch
+  echo "$PKG_WATCH" >> $ROOT/.work/uscan/watch
+  pushd $ROOT/.work/uscan &>/dev/null
+  REV=$(uscan --no-conf --verbose --safe --package foo --upstream-version 0 --watchfile "watch" 2>&1 | grep '\$newversion' | awk '{print $3}')
+  popd &>/dev/null
+  rm -rf $ROOT/.work/uscan
+
+  NEEDUPD=""
+  if [ ! "$PKG_VERSION" = "$REV" ] ; then
+    NEEDUPD="*"
+  fi
+  printf "* %-24s old: %-12s new: %-12s %-10s\n" "$PKG_NAME" "$PKG_VERSION" "$REV" "$NEEDUPD"
+
+  if [ ! "$PKG_VERSION" = "$REV" -a "$2" != "1" -a "$REV" != "" ] ; then
+    echo "[mkpkg] Updating $1"
+    sed "s|PKG_VERSION=.*|PKG_VERSION=\"$REV\"|g" -i $1
+    git add $1
+    git commit -m "[update] $PKG_NAME-$REV"
+  fi
+else
+  exit 1
+fi

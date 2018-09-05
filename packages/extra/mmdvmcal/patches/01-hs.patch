@@ -1,0 +1,30 @@
+From 6d19cad968993efee18ef0ec8c37409176f70737 Mon Sep 17 00:00:00 2001
+From: Stefan Saraev <stefan@saraev.ca>
+Date: Mon, 5 Mar 2018 20:27:59 +0200
+Subject: [PATCH] add CMakeLists.txt
+
+---
+ CMakeLists.txt | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 CMakeLists.txt
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+new file mode 100644
+index 0000000..029acad
+--- /dev/null
++++ b/CMakeLists.txt
+@@ -0,0 +1,11 @@
++cmake_minimum_required(VERSION 3.13)
++
++set(APP_NAME "MMDVMCal")
++project(${APP_NAME} CXX)
++
++file(GLOB SOURCES "*.cpp")
++file(GLOB HEADERS "*.h")
++
++SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Os -Wall -std=c++0x $ENV{CXXFLAGS}")
++
++add_executable(${APP_NAME} ${SOURCES} ${HEADERS})
+-- 
+2.15.1
+

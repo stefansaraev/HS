@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pkill -9 -f ntpd
+ntpd -N

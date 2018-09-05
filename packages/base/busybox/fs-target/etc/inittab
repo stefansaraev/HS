@@ -1,0 +1,8 @@
+null::sysinit:/etc/rc.d/rcS boot
+
+null::respawn:/sbin/syslogd -n -C -S -t -D
+::respawn:-/bin/sh
+
+null::restart:/sbin/init
+null::ctrlaltdel:/sbin/reboot
+null::shutdown:/etc/rc.d/rcS shutdown

@@ -1,0 +1,147 @@
+diff --git a/rngd.c b/rngd.c
+index 0205d40..14cbd67 100644
+--- a/rngd.c
++++ b/rngd.c
+@@ -43,7 +43,6 @@
+ #include <fcntl.h>
+ #include <errno.h>
+ #include <string.h>
+-#include <argp.h>
+ #include <syslog.h>
+ #include <signal.h>
+ 
+@@ -63,51 +62,9 @@ bool am_daemon;				/* True if we went daemon */
+ bool server_running = true;		/* set to false, to stop daemon */
+ 
+ /* Command line arguments and processing */
+-const char *argp_program_version =
+-	"rngd " VERSION "\n"
+-	"Copyright 2001-2004 Jeff Garzik\n"
+-	"Copyright (c) 2001 by Philipp Rumpf\n"
+-	"This is free software; see the source for copying conditions.  There is NO "
+-	"warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.";
+-
+-const char *argp_program_bug_address = PACKAGE_BUGREPORT;
+-
+ static char doc[] =
+ 	"Check and feed random data from hardware device to kernel entropy pool.\n";
+ 
+-static struct argp_option options[] = {
+-	{ "foreground",	'f', 0, 0, "Do not fork and become a daemon" },
+-
+-	{ "background", 'b', 0, 0, "Become a daemon (default)" },
+-
+-	{ "random-device", 'o', "file", 0,
+-	  "Kernel device used for random number output (default: /dev/random)" },
+-
+-	{ "rng-device", 'r', "file", 0,
+-	  "Kernel device used for random number input (default: /dev/hwrng)" },
+-
+-	{ "pid-file", 'p', "file", 0,
+-	  "File used for recording daemon PID, and multiple exclusion (default: /var/run/rngd.pid)" },
+-
+-	{ "random-step", 's', "nnn", 0,
+-	  "Number of bytes written to random-device at a time (default: 64)" },
+-
+-	{ "fill-watermark", 'W', "n", 0,
+-	  "Do not stop feeding entropy to random-device until at least n bits of entropy are available in the pool (default: 2048), 0 <= n <= 4096" },
+-
+-	{ "quiet", 'q', 0, 0, "Suppress error messages" },
+-
+-	{ "verbose" ,'v', 0, 0, "Report available entropy sources" },
+-
+-	{ "no-drng", 'd', "1|0", 0,
+-	  "Do not use drng as a source of random number input (default: 0)" },
+-	
+-	{ "no-tpm", 'n', "1|0", 0,
+-	  "Do not use tpm as a source of random number input (default: 0)" },
+-
+-	{ 0 },
+-};
+-
+ static struct arguments default_arguments = {
+ 	.random_name	= "/dev/random",
+ 	.pid_file	= "/var/run/rngd.pid",
+@@ -140,72 +97,6 @@ static struct rng rng_tpm = {
+ 
+ struct rng *rng_list;
+ 
+-/*
+- * command line processing
+- */
+-static error_t parse_opt (int key, char *arg, struct argp_state *state)
+-{
+-	switch(key) {
+-	case 'o':
+-		arguments->random_name = arg;
+-		break;
+-	case 'p':
+-		arguments->pid_file = arg;
+-		break;
+-	case 'r':
+-		rng_default.rng_name = arg;
+-		break;
+-	case 'f':
+-		arguments->daemon = false;
+-		break;
+-	case 'b':
+-		arguments->daemon = true;
+-		break;
+-	case 's':
+-		if (sscanf(arg, "%i", &arguments->random_step) == 0)
+-			argp_usage(state);
+-		break;
+-	case 'W': {
+-		int n;
+-		if ((sscanf(arg, "%i", &n) == 0) || (n < 0) || (n > 4096))
+-			argp_usage(state);
+-		else
+-			arguments->fill_watermark = n;
+-		break;
+-	}
+-	case 'q':
+-		arguments->quiet = true;
+-		break;
+-	case 'v':
+-		arguments->verbose = true;
+-		break;
+-	case 'd': {
+-		int n;
+-		if ((sscanf(arg,"%i", &n) == 0) || ((n | 1)!=1))
+-			argp_usage(state);
+-		else
+-			arguments->enable_drng = false;
+-		break;
+-	}
+-	case 'n': {
+-		int n;
+-		if ((sscanf(arg,"%i", &n) == 0) || ((n | 1)!=1))
+-			argp_usage(state);
+-		else
+-			arguments->enable_tpm = false;
+-		break;
+-	}
+-
+-	default:
+-		return ARGP_ERR_UNKNOWN;
+-	}
+-
+-	return 0;
+-}
+-
+-static struct argp argp = { options, parse_opt, NULL, doc };
+-
+-
+ static int update_kernel_random(int random_step,
+ 	unsigned char *buf, fips_ctx_t *fipsctx_in)
+ {
+@@ -302,9 +193,6 @@ int main(int argc, char **argv)
+ 	/* Get the default watermark level for this platform */
+ 	arguments->fill_watermark = default_watermark();
+ 
+-	/* Parsing of commandline parameters */
+-	argp_parse(&argp, argc, argv, 0, 0, arguments);
+-
+ 	/* Init entropy sources, and open TRNG device */
+ 	if (arguments->enable_drng)
+ 		rc_drng = init_drng_entropy_source(&rng_drng);

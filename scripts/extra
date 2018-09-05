@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-2.0-only
+
+. config/options
+
+update_addons_xml() {
+  echo "[*] updating Packages.gz* ..."
+  rm -f target/extra/Packages
+  find target/extra -iname "*.ipk" | while read line ; do
+    echo " [*] $line..."
+    mkdir -p .work/.ipkg
+    tar xf $line -C .work/.ipkg
+    tar xf .work/.ipkg/control.tar.gz -C .work/.ipkg
+    cat .work/.ipkg/control >> target/extra/Packages
+    echo "Size: $(du -b $line | awk '{print $1}')" >> target/extra/Packages
+    echo "MD5Sum: $(md5sum $line | awk '{print $1}')" >> target/extra/Packages
+    echo "" >> target/extra/Packages
+    rm -rf .work/.ipkg
+  done
+  rm -f target/extra/Packages.gz
+  gzip target/extra/Packages
+}
+
+build() {
+  . packages/virtual/extra/package.mk
+
+  for pkg in $PKG_DEPENDS_TARGET ; do
+    scripts/pack_extra $pkg
+  done
+}
+
+usage() {
+  echo "  usage: '$0 -b' to build"
+  echo "         '$0 -u' to update Packages.gz"
+}
+
+case $1 in
+  -b) build ;;
+  -u) update_addons_xml ;;
+   *) usage ;;
+esac

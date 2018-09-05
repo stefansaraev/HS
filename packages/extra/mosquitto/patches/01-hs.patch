@@ -1,0 +1,96 @@
+From c1b6efab275e29e3aa890803f24cc529a57116ce Mon Sep 17 00:00:00 2001
+From: Stefan Saraev <stefan@saraev.ca>
+Date: Fri, 21 Feb 2020 18:52:51 +0200
+Subject: [PATCH 1/2] disable shared libs
+
+---
+ lib/CMakeLists.txt     | 15 ---------------
+ lib/cpp/CMakeLists.txt | 11 -----------
+ 2 files changed, 26 deletions(-)
+
+diff --git a/lib/CMakeLists.txt b/lib/CMakeLists.txt
+index e1521f1..00cac22 100644
+--- a/lib/CMakeLists.txt
++++ b/lib/CMakeLists.txt
+@@ -74,21 +74,6 @@ if (WITH_SRV)
+ 	endif (ARES_HEADER)
+ endif (WITH_SRV)
+ 
+-add_library(libmosquitto SHARED ${C_SRC})
+-set_target_properties(libmosquitto PROPERTIES
+-	POSITION_INDEPENDENT_CODE 1
+-)
+-
+-target_link_libraries(libmosquitto ${LIBRARIES})
+-
+-set_target_properties(libmosquitto PROPERTIES
+-	OUTPUT_NAME mosquitto
+-	VERSION ${VERSION}
+-	SOVERSION 1
+-)
+-
+-install(TARGETS libmosquitto RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+-
+ if (WITH_STATIC_LIBRARIES)
+ 	add_library(libmosquitto_static STATIC ${C_SRC})
+ 	if (WITH_PIC)
+diff --git a/lib/cpp/CMakeLists.txt b/lib/cpp/CMakeLists.txt
+index b39ac3f..4287447 100644
+--- a/lib/cpp/CMakeLists.txt
++++ b/lib/cpp/CMakeLists.txt
+@@ -4,17 +4,6 @@ link_directories(${mosquitto_BINARY_DIR}/lib)
+ 
+ set(CPP_SRC mosquittopp.cpp mosquittopp.h)
+ 
+-add_library(mosquittopp SHARED ${CPP_SRC})
+-set_target_properties(mosquittopp PROPERTIES
+-	POSITION_INDEPENDENT_CODE 1
+-)
+-target_link_libraries(mosquittopp libmosquitto)
+-set_target_properties(mosquittopp PROPERTIES
+-	VERSION ${VERSION}
+-	SOVERSION 1
+-)
+-install(TARGETS mosquittopp RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}")
+-
+ if (WITH_STATIC_LIBRARIES)
+ 	add_library(mosquittopp_static STATIC
+ 		${C_SRC}
+-- 
+2.20.1
+
+
+From 4d19c8608ba8106aa9f71d99104382fa102cf2ac Mon Sep 17 00:00:00 2001
+From: Stefan Saraev <stefan@saraev.ca>
+Date: Fri, 21 Feb 2020 19:35:51 +0200
+Subject: [PATCH 2/2] allow root
+
+---
+ src/conf.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/conf.c b/src/conf.c
+index 8b6eb59..c4051de 100644
+--- a/src/conf.c
++++ b/src/conf.c
+@@ -536,7 +536,7 @@ int config__parse_args(struct mosquitto_db *db, struct mosquitto__config *config
+ 
+ 	/* Default to drop to mosquitto user if we are privileged and no user specified. */
+ 	if(!config->user){
+-		config->user = "mosquitto";
++		config->user = "root";
+ 	}
+ 	if(db->verbose){
+ 		config->log_type = INT_MAX;
+@@ -745,7 +745,7 @@ int config__read(struct mosquitto_db *db, struct mosquitto__config *config, bool
+ 	 * remain here even though it is covered in config__parse_args() because this
+ 	 * function may be called on its own. */
+ 	if(!config->user){
+-		config->user = "mosquitto";
++		config->user = "root";
+ 	}
+ 
+ 	db__limits_set(cr.max_inflight_bytes, cr.max_queued_messages, cr.max_queued_bytes);
+-- 
+2.20.1
+

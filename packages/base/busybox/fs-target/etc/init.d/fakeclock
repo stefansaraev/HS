@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# SEQ=01
+
+. /etc/profile
+
+FILE=/storage/.config/fakeclock.data
+
+case $1 in
+  start)
+    if [ -e $FILE ] ; then
+      OLD="$(cat $FILE)"
+      OLD_SEC=$(date -u -d "$OLD" '+%s')
+      NOW_SEC=$(date -u '+%s')
+      if [ $NOW_SEC -le $OLD_SEC ] ; then
+        date -u -s "$OLD"
+      fi
+    fi
+    ;;
+  stop)
+    date -u '+%Y-%m-%d %H:%M:%S' > $FILE
+    ;;
+esac
+
+exit 0

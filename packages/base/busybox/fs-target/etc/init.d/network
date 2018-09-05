@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# SEQ=05
+
+. /etc/profile
+
+case "$1" in
+  start)
+    cat /etc/hostname > /proc/sys/kernel/hostname 2>/dev/null
+    : | cp -i /etc/config/interfaces /storage/.config/interfaces 2>/dev/null
+    for iface in $(grep "^auto " /etc/network/interfaces | awk '{print $2}') ; do
+      for i in 1 2 3 4 5 6 7 8 9 10 ; do
+        if [ -d /sys/class/net/$iface ] ; then
+          ifup $iface &>/dev/null &
+          break
+        fi
+        sleep 1
+      done &
+    done
+    ;;
+esac
+
+exit 0

@@ -1,0 +1,27 @@
+# For more options and information see
+# http://rpf.io/configtxtreadme
+# Some settings may impact device functionality. See link above for details
+
+gpu_mem=16
+
+ignore_lcd=1
+disable_touchscreen=1
+
+start_file=start.elf
+fixup_file=fixup.dat
+kernel=kernel.img
+
+initramfs init.xz followkernel
+
+dtparam=i2c_arm=on
+enable_uart=1
+
+initial_turbo=30
+temp_limit=75
+
+dtoverlay=disable-bt
+
+[pi4]
+kernel=kernel7l.img
+
+[all]

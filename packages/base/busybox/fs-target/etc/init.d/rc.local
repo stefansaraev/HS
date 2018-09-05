@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# SEQ=98
+
+. /etc/profile
+
+case "$1" in
+  start)
+    if [ -x /storage/.config/rc.local ] ; then
+      /storage/.config/rc.local
+    fi
+    ;;
+esac
+
+exit 0

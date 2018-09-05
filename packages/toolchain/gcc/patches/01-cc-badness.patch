@@ -1,0 +1,14 @@
+diff --git a/gcc/incpath.c b/gcc/incpath.c
+index bcbe208..963c87a 100644
+--- a/gcc/incpath.c
++++ b/gcc/incpath.c
+@@ -461,6 +461,9 @@ add_path (char *path, incpath_kind chain, int cxx_aware, bool user_supplied_p)
+   p->construct = 0;
+   p->user_supplied_p = user_supplied_p;
+ 
++  if (strstr(p->name, "/usr/include" ) == p->name)
++    return;
++
+   add_cpp_dir_path (p, chain);
+ }
+ 

@@ -1,0 +1,27 @@
+diff --git a/Makefile b/Makefile
+index 4ac91b3..d5d0024 100644
+--- a/Makefile
++++ b/Makefile
+@@ -6,12 +6,8 @@ OS := $(shell uname -s)
+ PREFIX = $(DESTDIR)/opt/CronosAgent
+ 
+ ifeq ($(OS), Linux)
+-  FLAGS += -rdynamic
+-ifeq ($(shell lsb_release -i -s), Debian)
+-ifeq ($(shell grep -E "^6.0" /etc/debian_version > /dev/null ; echo $?), 0)
++  FLAGS += -static
+   LIBRARIES += rt
+-endif
+-endif
+ ifeq ($(USE_OPENSSL), yes)
+   FLAGS += -DUSE_OPENSSL
+   DEPENDENCIES += openssl
+@@ -37,7 +33,7 @@ endif
+ FLAGS += -g -fno-omit-frame-pointer -O3 -MMD $(foreach directory, $(DIRECTORIES), -I$(directory)) -DBUILD=\"$(BUILD)\"
+ LIBS += $(foreach library, $(LIBRARIES), -l$(library))
+ 
+-CC = gcc
++CC ?= gcc
+ CFLAGS += $(FLAGS) -std=gnu99
+ 
+ ifneq ($(strip $(DEPENDENCIES)), )

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+. /etc/profile
+
+case "$1" in
+  boot)
+    for i in /etc/rc.d/S??* ;do
+      $i start &>/dev/null
+    done
+    ;;
+  shutdown)
+    for i in $(ls /etc/rc.d/S??* | sort -r) ; do
+      $i stop &>/dev/null
+    done
+    umount -a -r
+    ;;
+esac

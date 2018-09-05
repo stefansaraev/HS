@@ -1,0 +1,25 @@
+From b8ef33ffbf14153b361cd8d942040bd85e3228f4 Mon Sep 17 00:00:00 2001
+From: Stefan Saraev <stefan@saraev.ca>
+Date: Mon, 5 Jun 2017 00:46:00 +0300
+Subject: [PATCH] silence
+
+---
+ gdb/main.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gdb/main.c b/gdb/main.c
+index e14dd06..bf44555 100644
+--- a/gdb/main.c
++++ b/gdb/main.c
+@@ -454,7 +454,7 @@ captured_main_1 (struct captured_main_args *context)
+   int argc = context->argc;
+   char **argv = context->argv;
+ 
+-  static int quiet = 0;
++  static int quiet = 1;
+   static int set_args = 0;
+   static int inhibit_home_gdbinit = 0;
+ 
+-- 
+2.20.1
+

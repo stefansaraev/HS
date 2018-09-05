@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-2.0-only
+
+. config/options $1
+
+if [ -z "$1" ]; then
+  echo "usage: $0 package_name"
+  exit 1
+fi
+
+check_package $1
+scripts/get $1
+
+[ ! -d "sources/$1" ] && exit 0
+
+mkdir -p $BUILD
+STAMP=$PKG_BUILD/.unpack
+
+if [ ! -f "$STAMP" -a -d "$PKG_BUILD" ] ; then
+  scripts/clean $1
+fi
+
+for i in $BUILD/$1-*; do
+  if [ -d $i -a -f "$i/.unpack" ] ; then
+    . "$i/.unpack"
+    if [ "$STAMP_PKG_NAME" = "$1" ]; then
+      check_deepmd5 || scripts/clean $1
+    fi
+  fi
+done
+
+[ -f "$STAMP" ] && exit 0
+
+printf "%${BUILD_INDENT}c ${boldcyan}UNPACK${endcolor}   $1\n" ' '
+export BUILD_INDENT=$((${BUILD_INDENT:-1}+4))
+
+unset -f pre_unpack
+unset -f unpack
+unset -f post_unpack
+
+. $PKG_DIR/package.mk
+
+if [ "$(type -t pre_unpack)" = "function" ]; then
+  pre_unpack
+fi
+
+if [ "$(type -t unpack)" = "function" ]; then
+  unpack
+else
+  [ -n "$PKG_URL" ] && SOURCE_NAME="$(basename $PKG_URL)" || exit 0
+  mkdir -p $PKG_BUILD && tar xf "sources/$1/$SOURCE_NAME" -C $PKG_BUILD --strip-components=1
+fi
+
+for i in $PKG_DIR/patches/*.patch \
+         $PROJECT_DIR/packages/$PKG_NAME/patches/*.patch; do
+  if [ -f "$i" ]; then
+    printf "%${BUILD_INDENT}c ${boldgreen}APPLY PATCH${endcolor}    $i\n" ' '
+    cat $i | patch -d "$PKG_BUILD" -p1
+  fi
+done
+
+if [ "$(type -t post_unpack)" = "function" ]; then
+  post_unpack
+fi
+
+rm -rf $STAMPS/$1
+
+save_stamp

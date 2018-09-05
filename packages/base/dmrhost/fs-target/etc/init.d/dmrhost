@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# SEQ=81
+
+. /etc/profile
+
+case "$1" in
+  start)
+    if [ `pidof DMRHost` ] ; then
+      exit 0
+    fi
+    CONFIG="/storage/.config/MMDVM.ini"
+    if [ -f $CONFIG ] ; then
+      (
+        while : ; do
+          sleep 2
+          DMRHost $CONFIG | logger -t dmrhost
+        done
+      ) &
+    fi
+    ;;
+  stop)
+    pkill -TERM -f 'DMRHost'
+    sleep 0.5
+    pkill -9 -f 'DMRHost|dmrhost'
+    ;;
+esac
+
+exit 0

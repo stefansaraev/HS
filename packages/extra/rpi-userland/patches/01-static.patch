@@ -1,0 +1,155 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index fe67fc8..e48647d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -18,7 +18,7 @@ endif()
+ set(vmcs_root ${PROJECT_SOURCE_DIR})
+ get_filename_component(VIDEOCORE_ROOT . ABSOLUTE)
+ 
+-set(VCOS_PTHREADS_BUILD_SHARED TRUE)
++set(VCOS_PTHREADS_BUILD_SHARED FALSE)
+ 
+ include(makefiles/cmake/global_settings.cmake)
+ include(makefiles/cmake/arm-linux.cmake)
+diff --git a/helpers/dtoverlay/CMakeLists.txt b/helpers/dtoverlay/CMakeLists.txt
+index b3bd30f..4ec9130 100644
+--- a/helpers/dtoverlay/CMakeLists.txt
++++ b/helpers/dtoverlay/CMakeLists.txt
+@@ -17,7 +17,7 @@ if (CMAKE_COMPILER_IS_GNUCC)
+    add_definitions (-ffunction-sections)
+ endif ()
+ 
+-add_library (dtovl ${SHARED}
++add_library (dtovl
+              dtoverlay.c)
+ 
+ target_link_libraries(dtovl fdt)
+diff --git a/host_applications/linux/libs/bcm_host/CMakeLists.txt b/host_applications/linux/libs/bcm_host/CMakeLists.txt
+index 2f4beb9..24ce7a4 100644
+--- a/host_applications/linux/libs/bcm_host/CMakeLists.txt
++++ b/host_applications/linux/libs/bcm_host/CMakeLists.txt
+@@ -15,7 +15,7 @@ include_directories( ../../../..
+ 		     ../../../../host_applications/vmcs/test_apps/iltest
+                      ../../../../host_applications/framework/common )
+ 
+-add_library(bcm_host ${SHARED} bcm_host.c)
++add_library(bcm_host bcm_host.c)
+ 
+ target_link_libraries(bcm_host vcos vchostif)
+ 
+diff --git a/host_applications/linux/libs/debug_sym/CMakeLists.txt b/host_applications/linux/libs/debug_sym/CMakeLists.txt
+index d437b99..03b03bb 100644
+--- a/host_applications/linux/libs/debug_sym/CMakeLists.txt
++++ b/host_applications/linux/libs/debug_sym/CMakeLists.txt
+@@ -8,7 +8,7 @@ include_directories (
+    ../../../../host_support/include
+    ${VIDEOCORE_ROOT})
+ 
+-add_library(debug_sym ${SHARED} debug_sym.c)
++add_library(debug_sym debug_sym.c)
+ add_library(debug_sym_static STATIC debug_sym.c)
+ 
+ install(TARGETS debug_sym DESTINATION lib)
+diff --git a/host_applications/linux/libs/sm/CMakeLists.txt b/host_applications/linux/libs/sm/CMakeLists.txt
+index 5ce5aca..7c7711c 100644
+--- a/host_applications/linux/libs/sm/CMakeLists.txt
++++ b/host_applications/linux/libs/sm/CMakeLists.txt
+@@ -10,7 +10,7 @@ include_directories( ../../../..
+                      ../../../../interface/vcos/${VCOS_PLATFORM}
+                      ../../../../host_applications/linux/kernel_headers )
+ 
+-add_library(vcsm ${SHARED} user-vcsm.c)
++add_library(vcsm user-vcsm.c)
+ 
+ target_link_libraries(vcsm vcos)
+ 
+diff --git a/interface/khronos/CMakeLists.txt b/interface/khronos/CMakeLists.txt
+index 9ad615b..baa142f 100644
+--- a/interface/khronos/CMakeLists.txt
++++ b/interface/khronos/CMakeLists.txt
+@@ -55,10 +55,10 @@ set(CLIENT_SOURCE
+    common/khrn_int_hash_asm.s
+    common/khrn_client_cache.c)
+ 
+-add_library(EGL ${SHARED} ${EGL_SOURCE})
+-add_library(GLESv2 ${SHARED} ${GLES_SOURCE})
+-add_library(OpenVG ${SHARED} ${VG_SOURCE})
+-add_library(WFC ${SHARED} ${WFC_SOURCE})
++add_library(EGL ${EGL_SOURCE})
++add_library(GLESv2 ${GLES_SOURCE})
++add_library(OpenVG ${VG_SOURCE})
++add_library(WFC ${WFC_SOURCE})
+ add_library(khrn_client ${CLIENT_SOURCE})
+ 
+ # TODO do we need EGL_static and GLESv2_static now that khrn_static exists?
+@@ -82,10 +82,10 @@ install(TARGETS EGL GLESv2 OpenVG WFC khrn_client DESTINATION lib)
+ install(TARGETS EGL_static GLESv2_static khrn_static DESTINATION lib)
+ 
+ # recommended names to use to avoid conflicts with mesa libs
+-add_library(brcmEGL ${SHARED} ${EGL_SOURCE})
+-add_library(brcmGLESv2 ${SHARED} ${GLES_SOURCE})
+-add_library(brcmOpenVG ${SHARED} ${VG_SOURCE})
+-add_library(brcmWFC ${SHARED} ${WFC_SOURCE})
++add_library(brcmEGL ${EGL_SOURCE})
++add_library(brcmGLESv2 ${GLES_SOURCE})
++add_library(brcmOpenVG ${VG_SOURCE})
++add_library(brcmWFC ${WFC_SOURCE})
+ 
+ target_link_libraries(brcmEGL khrn_client vchiq_arm vcos bcm_host ${VCSM_LIBS} -lm)
+ target_link_libraries(brcmGLESv2 brcmEGL khrn_client vcos)
+diff --git a/interface/mmal/CMakeLists.txt b/interface/mmal/CMakeLists.txt
+index 46f149d..3def56b 100644
+--- a/interface/mmal/CMakeLists.txt
++++ b/interface/mmal/CMakeLists.txt
+@@ -5,7 +5,7 @@ endif (NOT DEFINED LIBRARY_TYPE)
+ 
+ add_definitions(-Wall -Werror)
+ 
+-add_library(mmal SHARED util/mmal_util.c)
++add_library(mmal util/mmal_util.c)
+ 
+ add_subdirectory(core)
+ add_subdirectory(util)
+diff --git a/interface/mmal/client/brcmjpeg/CMakeLists.txt b/interface/mmal/client/brcmjpeg/CMakeLists.txt
+index 342a182..255914f 100644
+--- a/interface/mmal/client/brcmjpeg/CMakeLists.txt
++++ b/interface/mmal/client/brcmjpeg/CMakeLists.txt
+@@ -1,4 +1,4 @@
+-add_library(brcmjpeg SHARED brcmjpeg.c)
++add_library(brcmjpeg brcmjpeg.c)
+ target_link_libraries(brcmjpeg mmal_core mmal_util mmal_vc_client)
+ 
+ include_directories(../../../../host_applications/linux/libs/sm)
+diff --git a/interface/vchiq_arm/CMakeLists.txt b/interface/vchiq_arm/CMakeLists.txt
+index 7af383d..a2815a9 100644
+--- a/interface/vchiq_arm/CMakeLists.txt
++++ b/interface/vchiq_arm/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ 
+-add_library(vchiq_arm SHARED
++add_library(vchiq_arm
+             vchiq_lib.c vchiq_util.c)
+ 
+ # pull in VCHI cond variable emulation
+diff --git a/middleware/openmaxil/CMakeLists.txt b/middleware/openmaxil/CMakeLists.txt
+index 3e9c5f9..ef34012 100644
+--- a/middleware/openmaxil/CMakeLists.txt
++++ b/middleware/openmaxil/CMakeLists.txt
+@@ -12,7 +12,7 @@ if (VIDEOCORE_SIMULATION)
+ 
+    # VC-simulation build.
+ 
+-   add_library (openmaxil SHARED
++   add_library (openmaxil
+  #               core/ilcore.c
+                 core/ril_top.c
+                 core/ilmalloc.c
+@@ -36,7 +36,7 @@ else ()
+ 
+    add_definitions (-DVLL_PATH_PREFIX="${VMCS_PLUGIN_DIR}/")
+ 
+-   add_library (openmaxil SHARED 
++   add_library (openmaxil
+                 ../../host_applications/framework/common/ilcore.c
+ #                core/ilcore.c
+ #                core/ril_top.c

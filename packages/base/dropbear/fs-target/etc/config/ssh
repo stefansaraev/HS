@@ -1,0 +1,3 @@
+# set (uncomment) SSH_SECURE=true to disable dropbear password logins
+
+# SSH_SECURE=true

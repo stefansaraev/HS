@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# SPDX-License-Identifier: GPL-2.0-only
+
+. config/options $1
+
+if [ -z "$1" ]; then
+  echo "usage: $0 package_name"
+  exit 1
+fi
+
+scripts/build $1
+
+echo "* MKIPKG $1"
+
+NOW=$(date +%Y%m%d%H%M)
+
+# data.tar.gz
+mkdir -p .work/extra/$1
+tar cf .work/extra/$1/data.tar.gz -C $(get_pkg_build $1)/.install_target/ .
+
+# control.tar.gz
+echo "Package: ${PKG_NAME}" > .work/extra/$1/control
+echo "Architecture: ${TARGET_ARCH}" >> .work/extra/$1/control
+echo "Version: ${NOW}-${PKG_VERSION}" >> .work/extra/$1/control
+echo "Filename: ${PKG_NAME}_${NOW}-${PKG_VERSION}.ipk" >> .work/extra/$1/control
+
+PKG_OPKG_DEPENDS=""
+. $PKG_DIR/package.mk
+if [ -n "$PKG_OPKG_DEPENDS" ] ; then
+  echo "Depends: $PKG_OPKG_DEPENDS" >> .work/extra/$1/control
+fi
+
+tar cf .work/extra/$1/control.tar.gz -C .work/extra/$1 control
+rm -f .work/extra/$1/control
+
+# debian-binary
+echo 2.0 > .work/extra/$1/debian-binary
+
+# create ipk
+mkdir -p target/extra
+rm -f target/extra/${PKG_NAME}_*.ipk
+tar cf target/extra/${PKG_NAME}_${NOW}-${PKG_VERSION}.ipk -C .work/extra/$1 .
+
+# cleanup
+rm -rf .work/extra/$i
