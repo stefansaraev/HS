@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="e2fsprogs"
-PKG_VERSION="1.45.7"
+PKG_VERSION="1.46.1"
 PKG_SITE="https://github.com/tytso/e2fsprogs"
 PKG_WATCH="https://github.com/tytso/e2fsprogs/releases/ .*/archive/v([\d\.]*)\.tar\.gz"
 PKG_URL="https://github.com/tytso/e2fsprogs/archive/v$PKG_VERSION.tar.gz"
@@ -9,8 +9,6 @@ PKG_URL="https://github.com/tytso/e2fsprogs/archive/v$PKG_VERSION.tar.gz"
 PKG_CONFIGURE_OPTS_TARGET="
   BUILD_CC=$HOST_CC
   ac_cv_path_PERL=
-  ac_cv_header_pthread_h=no
-  ac_cv_lib_pthread_sem_init=no
   --enable-symlink-install
   --enable-symlink-build
   --disable-elf-shlibs
