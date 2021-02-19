@@ -14,7 +14,7 @@ case "$1" in
       (
         while : ; do
           sleep 2
-          DMRHost $CONFIG | logger -t dmrhost
+          DMRHost $CONFIG &>/dev/null
         done
       ) &
     fi
