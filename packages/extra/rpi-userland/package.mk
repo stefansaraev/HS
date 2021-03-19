@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="rpi-userland"
-PKG_VERSION="4a0a19b88b"
+PKG_VERSION="3fd8527eef"
 PKG_SITE="https://github.com/raspberrypi/userland/tree/master"
 PKG_URL="https://github.com/raspberrypi/userland/archive/$PKG_VERSION.tar.gz"
 
