@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="dmrhost"
-PKG_VERSION="d71d421958"
+PKG_VERSION="75b544684e"
 PKG_SITE="https://github.com/stefansaraev/DMRHost/tree/dev"
 PKG_URL="https://github.com/stefansaraev/DMRHost/archive/$PKG_VERSION.tar.gz"
 
