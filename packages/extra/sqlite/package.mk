@@ -1,14 +1,16 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="sqlite"
-PKG_VERSION="3350200"
+PKG_VERSION="3350400"
 PKG_SITE="https://www.sqlite.org/"
 PKG_WATCH="https://distfiles.macports.org/sqlite3/ sqlite-autoconf-(.*)\.tar\.gz"
 PKG_URL="https://www.sqlite.org/2021/$PKG_NAME-autoconf-$PKG_VERSION.tar.gz"
 
+PKG_DEPENDS_TARGET="readline"
+
 PKG_CONFIGURE_OPTS_TARGET="
   --disable-shared --enable-static
-  --disable-readline
+  --enable-readline
   --enable-threadsafe
   --disable-dynamic-extensions
 "
