@@ -8,7 +8,11 @@ PKG_URL="https://github.com/strace/strace/releases/download/v$PKG_VERSION/strace
 
 PKG_CONFIGURE_OPTS_TARGET="--enable-mpers=check"
 
+pre_configure_target() {
+  CFLAGS="$CFLAGS -static"
+}
+
 makeinstall_target() {
   mkdir -p $INSTALL/usr/bin
-  cp $PKG_BUILD_SUBDIR/strace $INSTALL/usr/bin
+  cp $PKG_BUILD_SUBDIR/src/strace $INSTALL/usr/bin
 }
