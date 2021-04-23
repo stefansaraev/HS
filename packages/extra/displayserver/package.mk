@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="displayserver"
-PKG_VERSION="72380abb20"
+PKG_VERSION="b53a740b80"
 PKG_SITE="https://github.com/stefansaraev/DisplayServer/tree/master"
 PKG_URL="https://github.com/stefansaraev/DisplayServer/archive/$PKG_VERSION.tar.gz"
 
