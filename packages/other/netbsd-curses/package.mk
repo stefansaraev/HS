@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="netbsd-curses"
-PKG_VERSION="0.3.1"
+PKG_VERSION="0.3.2"
 PKG_SITE="https://github.com/sabotage-linux/netbsd-curses"
 PKG_WATCH="https://github.com/sabotage-linux/netbsd-curses/releases/ .*/archive/refs/tags/v([\d\.]*)\.tar\.gz"
 PKG_URL="https://github.com/sabotage-linux/netbsd-curses/archive/v$PKG_VERSION.tar.gz"
