@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="curl"
-PKG_VERSION="7.77.0"
+PKG_VERSION="7.78.0"
 PKG_SITE="http://curl.haxx.se"
 PKG_WATCH="https://curl.haxx.se/download/ download/curl-([\d\.]*)\.tar\.gz"
 PKG_URL="http://curl.haxx.se/download/$PKG_NAME-$PKG_VERSION.tar.bz2"
@@ -55,7 +55,6 @@ PKG_CONFIGURE_OPTS_TARGET="
   --with-ca-bundle=/storage/.extra/etc/ssl/cert.pem
   --without-ca-path
   --without-libpsl
-  --without-libmetalink
   --without-libssh2
   --without-librtmp
   --without-libidn2
