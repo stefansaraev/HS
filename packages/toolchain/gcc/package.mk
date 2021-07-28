@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="gcc"
-PKG_VERSION="11.1.0"
+PKG_VERSION="11.2.0"
 PKG_SITE="http://gcc.gnu.org/"
 PKG_WATCH="ftp://gcc.gnu.org/pub/gcc/releases/gcc-(11\.[\d\.]*)/ gcc-([\d\.]+)\.tar\.xz"
 PKG_URL="http://ftp.gnu.org/gnu/gcc/$PKG_NAME-$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.gz"
