@@ -10,3 +10,8 @@ PKG_CONFIGURE_OPTS_HOST="
   --disable-shared --enable-static
   --enable-cxx
 "
+
+PKG_CONFIGURE_OPTS_TARGET="
+  --disable-shared --enable-static
+  --enable-cxx
+"
