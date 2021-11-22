@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="mosquitto"
-PKG_VERSION="2.0.13"
+PKG_VERSION="2.0.14"
 PKG_SITE="https://mosquitto.org"
 PKG_WATCH="https://mosquitto.org/files/source/  mosquitto-(.*)\.tar.gz"
 PKG_URL="https://mosquitto.org/files/source/mosquitto-1.6.8.tar.gz"
