@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="nftables"
-PKG_VERSION="1.0.0"
+PKG_VERSION="1.0.1"
 PKG_SITE="http://www.netfilter.org/"
 PKG_WATCH="https://netfilter.org/projects/nftables/downloads.html .*/nftables-((?!0.100|0.099)\S+).tar.bz2"
 PKG_URL="http://www.netfilter.org/projects/nftables/files/$PKG_NAME-$PKG_VERSION.tar.bz2"
