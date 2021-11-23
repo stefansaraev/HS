@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# SEQ=81
+
+. /etc/profile
+
+case "$1" in
+  start)
+    if [ `pidof zerotier-one` ] ; then
+      exit 0
+    fi
+    if [ -f $CONFIG ] ; then
+      (
+        while : ; do
+          sleep 2
+          zerotier-one &>/dev/null
+        done
+      ) &
+    fi
+    ;;
+  stop)
+    pkill -9 -f 'zerotier-one'
+    ;;
+esac
+
+exit 0

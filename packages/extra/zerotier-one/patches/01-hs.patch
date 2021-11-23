@@ -1,0 +1,13 @@
+diff --git a/osdep/OSUtils.cpp b/osdep/OSUtils.cpp
+index 5111bc9..18e4574 100644
+--- a/osdep/OSUtils.cpp
++++ b/osdep/OSUtils.cpp
+@@ -417,7 +417,7 @@ std::string OSUtils::platformDefaultHomePath()
+ 	return std::string("/var/db/zerotier-one");
+ #else
+ 	// Use /var/lib for Linux and other *nix
+-	return std::string("/var/lib/zerotier-one");
++	return std::string("/storage/.config/zerotier-one");
+ #endif
+ 
+ #endif
