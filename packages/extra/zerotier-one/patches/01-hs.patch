@@ -1,3 +1,17 @@
+diff --git a/one.cpp b/one.cpp
+index b597cab..490455b 100644
+--- a/one.cpp
++++ b/one.cpp
+@@ -1376,8 +1376,7 @@ static int cli(int argc,char **argv)
+ 		}
+ 		close(sock);
+ 		char cwd[16384];
+-		getcwd(cwd, sizeof(cwd));
+-		sprintf(cwd, "%s%szerotier_dump.txt", cwd, ZT_PATH_SEPARATOR_S);
++		sprintf(cwd, "/tmp/zerotier_dump.txt", cwd);
+ 		fprintf(stdout, "Writing dump to: %s\n", cwd);
+ 		int fd = open(cwd, O_CREAT|O_RDWR,0664);
+ 		if (fd == -1) {
 diff --git a/osdep/OSUtils.cpp b/osdep/OSUtils.cpp
 index 5111bc9..18e4574 100644
 --- a/osdep/OSUtils.cpp
