@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="php"
-PKG_VERSION="8.0.13"
+PKG_VERSION="8.1.0"
 PKG_SITE="https://www.php.net"
 PKG_WATCH="https://www.php.net/downloads.php .*/php-(.*)\.tar.gz"
 PKG_URL="https://www.php.net/distributions/php-$PKG_VERSION.tar.bz2"
@@ -18,6 +18,7 @@ PKG_CONFIGURE_OPTS_TARGET="
   --disable-cgi
   --without-valgrind
   --disable-debug
+  --enable-zts
   --with-config-file-path=/storage/.config
   --with-openssl
   --without-kerberos
@@ -37,16 +38,21 @@ PKG_CONFIGURE_OPTS_TARGET="
   --enable-fileinfo
   --enable-filter
   --disable-gd
+  --with-freetype
   --with-mhash
   --with-gettext
   --disable-intl
   --enable-mbstring
-  --disable-opcache
+  --enable-opcache
+  --enable-pcntl
   --enable-pdo
+  --disable-phar
   --enable-simplexml
   --enable-soap
   --enable-sockets
-  --disable-phar
+  --enable-sysvmsg
+  --enable-sysvsem
+  --enable-sysvshm
 "
 
 pre_configure_target() {
