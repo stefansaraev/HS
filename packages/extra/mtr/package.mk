@@ -3,7 +3,7 @@
 PKG_NAME="mtr"
 PKG_VERSION="0.94"
 PKG_SITE="https://github.com/traviscross/mtr"
-PKG_WATCH="https://github.com/traviscross/mtr/releases/ .*/archive/refs/tags/v([\d\.]*)\.tar\.gz"
+PKG_WATCH="https://github.com/traviscross/mtr/tags .*/archive/refs/tags/v([\d\.]*)\.tar\.gz"
 PKG_URL="https://github.com/traviscross/mtr/archive/v$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="netbsd-curses"
 
