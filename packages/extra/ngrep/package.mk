@@ -3,7 +3,7 @@
 PKG_NAME="ngrep"
 PKG_VERSION="1_47"
 PKG_SITE="https://github.com/jpr5/ngrep"
-PKG_WATCH="https://github.com/jpr5/ngrep/releases .*/V(.*)\.tar\.gz"
+PKG_WATCH="https://github.com/jpr5/ngrep/tags .*/V(.*)\.tar\.gz"
 PKG_URL="https://github.com/jpr5/ngrep/archive/V$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="libpcap"
 
