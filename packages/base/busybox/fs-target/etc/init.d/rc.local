@@ -6,8 +6,8 @@
 
 case "$1" in
   start)
-    if [ -x /storage/.config/rc.local ] ; then
-      /storage/.config/rc.local
+    if [ -x /etc/rc.local ] ; then
+      /etc/rc.local
     fi
     ;;
 esac

@@ -33,6 +33,7 @@ makeinstall_target() {
   ln -sf /storage/.config/resolv.conf $INSTALL/etc/resolv.conf
   ln -sf /storage/.config/hostname $INSTALL/etc/hostname
   ln -sf /storage/.config/passwd $INSTALL/etc/passwd
+  ln -sf /storage/.config/rc.local $INSTALL/etc/rc.local
 
   mkdir -p $INSTALL/etc/network
   ln -sf /storage/.config/interfaces $INSTALL/etc/network/interfaces
