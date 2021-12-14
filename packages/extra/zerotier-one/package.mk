@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="zerotier-one"
-PKG_VERSION="7f4cc1a239"
+PKG_VERSION="30c77cfee5"
 PKG_SITE="https://github.com/zerotier/ZeroTierOne/tree/master"
 PKG_URL="https://github.com/zerotier/ZeroTierOne/archive/$PKG_VERSION.tar.gz"
 
