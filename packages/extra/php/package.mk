@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="php"
-PKG_VERSION="8.1.0"
+PKG_VERSION="8.1.1"
 PKG_SITE="https://www.php.net"
 PKG_WATCH="https://www.php.net/downloads.php .*/php-(.*)\.tar.gz"
 PKG_URL="https://www.php.net/distributions/php-$PKG_VERSION.tar.bz2"
