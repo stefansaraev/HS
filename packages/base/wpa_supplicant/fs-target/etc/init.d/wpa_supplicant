@@ -4,9 +4,6 @@
 
 case "$1" in
   start)
-    if [ `pidof wpa_supplicant` ] ; then
-      exit 0
-    fi
     if [ -d /sys/class/net/wlan0 ] ; then
       : | cp -i /etc/config/wpa_supplicant.conf /storage/.config 2>/dev/null
       wpa_supplicant -B -Dnl80211 -iwlan0 -c/storage/.config/wpa_supplicant.conf -C /var/run/wpa_supplicant 2>/dev/null

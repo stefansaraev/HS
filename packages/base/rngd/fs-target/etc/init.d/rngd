@@ -6,9 +6,6 @@
 
 case "$1" in
   start)
-    if [ `pidof rngd` ] ; then
-      exit 0
-    fi
     rngd
     ;;
   stop)

@@ -6,9 +6,6 @@
 
 case "$1" in
   start)
-    if [ `pidof zerotier-one` ] ; then
-      exit 0
-    fi
     if [ -f $CONFIG ] ; then
       (
         while : ; do
