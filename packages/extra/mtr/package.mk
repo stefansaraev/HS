@@ -12,8 +12,8 @@ PKG_AUTORECONF="yes"
 PKG_CONFIGURE_OPTS_TARGET="--without-gtk"
 
 pre_configure_target() {
+  LDFLAGS="$LDFLAGS -static"
   export LIBS="-lcurses -lterminfo"
-  CFLAGS="$CFLAGS -static"
 }
 
 makeinstall_target() {

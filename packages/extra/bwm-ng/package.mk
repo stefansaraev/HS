@@ -24,7 +24,7 @@ post_unpack() {
 }
 
 pre_configure_target() {
-  export LDFLAGS="$LDFLAGS -static"
+  LDFLAGS="$LDFLAGS -static"
   export LIBS="-lcurses -lterminfo"
 }
 

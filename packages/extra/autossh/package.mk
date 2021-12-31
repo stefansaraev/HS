@@ -14,7 +14,7 @@ PKG_CONFIGURE_OPTS_TARGET="
 
 pre_configure_target() {
   rm -rf $PKG_BUILD_SUBDIR
-  export LDFLAGS="$LDFLAGS -static"
+  LDFLAGS="$LDFLAGS -static"
 }
 
 makeinstall_target() {

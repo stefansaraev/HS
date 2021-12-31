@@ -64,7 +64,7 @@ PKG_CONFIGURE_OPTS_TARGET="
 "
 
 pre_configure_target() {
-  export CFLAGS="$CLFAGS -lpthread -static"
+  LDFLAGS="$LDFAGS -static"
 }
 
 post_unpack() {

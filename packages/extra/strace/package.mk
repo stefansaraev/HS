@@ -9,7 +9,7 @@ PKG_URL="https://github.com/strace/strace/releases/download/v$PKG_VERSION/strace
 PKG_CONFIGURE_OPTS_TARGET="--enable-mpers=check"
 
 pre_configure_target() {
-  CFLAGS="$CFLAGS -static"
+  LDFLAGS="$LDFLAGS -static"
 }
 
 makeinstall_target() {

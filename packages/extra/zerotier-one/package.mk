@@ -10,7 +10,7 @@ post_unpack() {
 }
 
 pre_configure_target() {
-  export CXXFLAGS="$CXXFLAGS -D_GLIBCXX_USE_C99_STDIO=1 -D_GLIBCXX_USE_C99_STDLIB=1 -static"
+  CXXFLAGS="$CXXFLAGS -static"
 }
 
 makeinstall_target() {

@@ -22,14 +22,13 @@ PKG_CONFIGURE_OPTS_TARGET="
   --enable-selinux=no
   --enable-gui=no
   --with-features=tiny
-  --with-tlib=ncurses
+  --with-tlib=terminfo
   --without-x
 "
 
 pre_configure_target() {
   rm -rf $PKG_BUILD_SUBDIR
-  export LIBS="-lterminfo"
-  export LDFLAGS="$LDFLAGS -static"
+  LDFLAGS="$LDFLAGS -static"
 }
 
 makeinstall_target() {

@@ -40,8 +40,7 @@ PKG_CONFIGURE_OPTS_TARGET="
 pre_configure_target() {
   CC_FOR_BUILD="$HOST_CC"
   CFLAGS_FOR_BUILD="$HOST_CFLAGS"
-  CFLAGS="$CFLAGS -static -D_GLIBCXX_USE_C99_STDIO"
-  CXXFLAGS="$CFLAGS -static -D_GLIBCXX_USE_C99_STDIO"
+  LDFLAGS="$LDFLAGS -static"
 }
 
 makeinstall_target() {

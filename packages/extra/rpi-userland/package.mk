@@ -11,7 +11,7 @@ PKG_CMAKE_OPTS_TARGET="
 "
 
 pre_configure_target() {
-  CFLAGS="$CFLAGS -static"
+  LDFLAGS="$LDFLAGS -static"
 }
 
 makeinstall_target() {

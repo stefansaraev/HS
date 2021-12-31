@@ -281,13 +281,10 @@ export MAKEFLAGS="-j$(nproc) V=0"
 # target environment
 ################################################################################
 [ "$DEBUG" = yes ] && DEBUG_FLAGS="-ggdb" || DEBUG_FLAGS="-DNDEBUG"
-TARGET_CFLAGS="$TARGET_CFLAGS -w -pipe -Os $DEBUG_FLAGS"
-TARGET_LDFLAGS="$TARGET_LDFLAGS -Wl,--as-needed"
 
-export TARGET_CFLAGS="$TARGET_CFLAGS -ffunction-sections -fdata-sections"
-export TARGET_LDFLAGS="$TARGET_LDFLAGS -Wl,--gc-sections"
-
-TARGET_CXXFLAGS="$TARGET_CFLAGS"
+TARGET_CFLAGS="$TARGET_CFLAGS -w -pipe -Os $DEBUG_FLAGS -ffunction-sections -fdata-sections"
+TARGET_CXXFLAGS="$TARGET_CFLAGS -D_GLIBCXX_USE_C99_STDIO=1 -D_GLIBCXX_USE_C99_STDLIB=1"
+TARGET_LDFLAGS="$TARGET_LDFLAGS -Wl,--as-needed -Wl,--gc-sections"
 
 ################################################################################
 # host environment

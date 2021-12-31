@@ -56,8 +56,8 @@ PKG_CONFIGURE_OPTS_TARGET="
 "
 
 pre_configure_target() {
-  export LDFLAGS="$LDFLAGS -static"
-  export PKG_CONFIG="pkg-config --static"
+  LDFLAGS="$LDFLAGS -static"
+  PKG_CONFIG="pkg-config --static"
 }
 
 makeinstall_target() {

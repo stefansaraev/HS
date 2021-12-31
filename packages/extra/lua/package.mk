@@ -9,7 +9,7 @@ PKG_URL="http://www.lua.org/ftp/lua-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="readline"
 
 pre_configure_target() {
-  export LDFLAGS="$LDFLAGS -static"
+  LDFLAGS="$LDFLAGS -static"
   export LIBS="-lreadline -lcurses -lterminfo"
 }
 
