@@ -32,9 +32,9 @@ zcat HS.*.img.gz | dd of=/dev/mmcblk0
 
 ```
 mount -o remount,rw /boot
-tar xf HS.*.tar -C /boot
+tar xf HS.*.tar.gz -C /boot
 mount -o remount,ro /boot
-rm -f HS.*.tar
+rm -f HS.*.tar.gz
 reboot
 ```
 

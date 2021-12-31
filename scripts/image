@@ -62,7 +62,7 @@ mkdir -p $RELEASE_DIR
 cp $TARGET_IMG/$IMAGE_NAME.system $RELEASE_DIR/root.sqfs
 cp $TARGET_IMG/$IMAGE_NAME.init $RELEASE_DIR/init.xz
 cp -PR $BUILD/*/.boot/* $RELEASE_DIR/
-tar cf $TARGET_IMG/$IMAGE_NAME.tar -C $RELEASE_DIR .
+tar zcf $TARGET_IMG/$IMAGE_NAME.tar.gz -C $RELEASE_DIR .
 
 env IMAGE_NAME=$IMAGE_NAME RELEASE_DIR=$RELEASE_DIR scripts/mkimage $1
 
