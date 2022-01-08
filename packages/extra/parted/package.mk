@@ -5,12 +5,12 @@ PKG_VERSION="3.4"
 PKG_SITE="http://www.gnu.org/software/parted/"
 PKG_WATCH="https://ftp.gnu.org/gnu/parted/ parted-([\d\.]*)\.tar\.xz"
 PKG_URL="http://ftpmirror.gnu.org/parted/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_TARGET="util-linux"
+PKG_DEPENDS_TARGET="util-linux readline"
 
 PKG_CONFIGURE_OPTS_TARGET="
   --disable-device-mapper
   --disable-shared
-  --without-readline
+  --with-readline
   --disable-rpath
   --with-gnu-ld
 "
