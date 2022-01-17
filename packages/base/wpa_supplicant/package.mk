@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="wpa_supplicant"
-PKG_VERSION="2.9"
+PKG_VERSION="2.10"
 PKG_SITE="https://w1.fi/wpa_supplicant/"
 PKG_WATCH="https://w1.fi/releases/ wpa_supplicant-([\d\.]*)\.tar\.gz"
 PKG_URL="https://w1.fi/releases/$PKG_NAME-$PKG_VERSION.tar.gz"
