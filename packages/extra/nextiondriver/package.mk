@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="nextiondriver"
-PKG_VERSION="aaecf33639"
+PKG_VERSION="ecb74ec4d7"
 PKG_SITE="https://github.com/on7lds/NextionDriver/tree/master"
 PKG_URL="https://github.com/on7lds/NextionDriver/archive/$PKG_VERSION.tar.gz"
 
