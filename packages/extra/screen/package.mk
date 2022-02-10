@@ -1,11 +1,13 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="screen"
-PKG_VERSION="4.8.0"
+PKG_VERSION="4.9.0"
 PKG_SITE="http://www.gnu.org/software/screen/"
 PKG_WATCH="http://ftp.gnu.org/gnu/screen/ screen-([\d\.]*)\.tar\.gz"
 PKG_URL="http://ftp.gnu.org/gnu/screen/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="netbsd-curses"
+
+PKG_AUTORECONF="yes"
 
 PKG_CONFIGURE_OPTS_TARGET="
   --enable-colors256
