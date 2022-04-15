@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="rsync"
-PKG_VERSION="3.2.3"
+PKG_VERSION="3.2.4"
 PKG_SITE="http://www.samba.org/ftp/rsync/rsync.html"
 PKG_WATCH="https://download.samba.org/pub/rsync/src/ rsync-([\d\.]*)\.tar\.gz"
 PKG_URL="https://download.samba.org/pub/rsync/src/rsync-$PKG_VERSION.tar.gz"
