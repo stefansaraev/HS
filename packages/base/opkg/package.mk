@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="opkg"
-PKG_VERSION="0.5.0"
+PKG_VERSION="0.6.0"
 PKG_SITE="https://git.yoctoproject.org/opkg/"
 PKG_WATCH="https://git.yoctoproject.org/opkg/ /opkg/snapshot/opkg-(.*)\.tar.gz"
 PKG_URL="https://git.yoctoproject.org/opkg/snapshot/$PKG_NAME-$PKG_VERSION.tar.gz"
