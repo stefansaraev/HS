@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="file"
-PKG_VERSION="5.41"
+PKG_VERSION="5.42"
 PKG_SITE="http://www.darwinsys.com/file/"
 PKG_WATCH="http://distfiles.macports.org/file/ file-([\d\.]*)\.tar\.gz"
 PKG_URL="http://distfiles.macports.org/file/$PKG_NAME-$PKG_VERSION.tar.gz"
