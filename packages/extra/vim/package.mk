@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="vim"
-PKG_VERSION="8.2"
+PKG_VERSION="9.0"
 PKG_SITE="http://www.vim.org/"
 PKG_WATCH="http://ftp.vim.org/pub/vim/unix/ vim-([\d\.]*)\.tar\.bz2"
 PKG_URL="http://ftp.vim.org/pub/vim/unix/vim-$PKG_VERSION.tar.bz2"
