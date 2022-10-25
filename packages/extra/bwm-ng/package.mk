@@ -3,7 +3,7 @@
 PKG_NAME="bwm-ng"
 PKG_VERSION="0.6.3"
 PKG_SITE="https://github.com/vgropp/bwm-ng"
-PKG_WATCH="https://github.com/vgropp/bwm-ng/releases/ .*/archive/refs/tags/v([\d\.]*)\.tar\.gz"
+PKG_WATCH="https://github.com/vgropp/bwm-ng/tags/ .*/v([\d\.]*)\.tar\.gz"
 PKG_URL="https://github.com/vgropp/bwm-ng/archive/v$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="netbsd-curses"
 

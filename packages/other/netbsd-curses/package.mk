@@ -3,7 +3,7 @@
 PKG_NAME="netbsd-curses"
 PKG_VERSION="0.3.2"
 PKG_SITE="https://github.com/sabotage-linux/netbsd-curses"
-PKG_WATCH="https://github.com/sabotage-linux/netbsd-curses/releases/ .*/archive/refs/tags/v([\d\.]*)\.tar\.gz"
+PKG_WATCH="https://github.com/sabotage-linux/netbsd-curses/tags/ .*/v([\d\.]*)\.tar\.gz"
 PKG_URL="https://github.com/sabotage-linux/netbsd-curses/archive/v$PKG_VERSION.tar.gz"
 
 make_target() {
