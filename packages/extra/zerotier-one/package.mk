@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="zerotier-one"
-PKG_VERSION="e0acccc3c9"
+PKG_VERSION="1.10.2"
 PKG_SITE="https://github.com/zerotier/ZeroTierOne/tree/master"
-PKG_URL="https://github.com/zerotier/ZeroTierOne/archive/$PKG_VERSION.tar.gz"
+PKG_WATCH="https://github.com/zerotier/ZeroTierOne/tags/ .*/([\d\.]*)\.tar\.gz"
+PKG_URL="https://github.com/zerotier/ZeroTierOne/archive/refs/tags/$PKG_VERSION.tar.gz"
 
 post_unpack() {
   rm -f $PKG_BUILD/CMakeLists.txt
