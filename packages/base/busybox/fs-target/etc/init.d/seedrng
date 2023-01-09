@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# SEQ=02
+
+seedrng -d /storage/.seedrng
+
+exit 0
