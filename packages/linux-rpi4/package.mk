@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="linux-rpi4"
-PKG_VERSION="41bd85e2a8"
+PKG_VERSION="14b35093ca"
 PKG_SITE="https://github.com/raspberrypi/linux/tree/rpi-5.15.y"
 PKG_URL="https://github.com/raspberrypi/linux/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
