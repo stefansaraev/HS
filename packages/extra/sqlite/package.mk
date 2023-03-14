@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="sqlite"
-PKG_VERSION="3400100"
+PKG_VERSION="3410100"
 PKG_SITE="https://www.sqlite.org/"
 PKG_WATCH="https://distfiles.macports.org/sqlite3/ sqlite-autoconf-(.*)\.tar\.gz"
-PKG_URL="https://www.sqlite.org/2022/$PKG_NAME-autoconf-$PKG_VERSION.tar.gz"
+PKG_URL="https://www.sqlite.org/2023/$PKG_NAME-autoconf-$PKG_VERSION.tar.gz"
 
 PKG_DEPENDS_TARGET="readline"
 
