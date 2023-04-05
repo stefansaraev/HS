@@ -22,7 +22,7 @@ makeinstall_host() {
 }
 
 pre_configure_target() {
-  make -C $PKG_BUILD oldconfig
+  make -C $PKG_BUILD olddefconfig
 }
 
 make_target() {
