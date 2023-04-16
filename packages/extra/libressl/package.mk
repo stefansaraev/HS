@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="libressl"
-PKG_VERSION="3.7.1"
+PKG_VERSION="3.7.2"
 PKG_SITE="http://www.libressl.org/"
 PKG_WATCH="https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/ libressl-(.*)\.tar\.gz"
 PKG_URL="http://ftp.openbsd.org/pub/OpenBSD/LibreSSL/$PKG_NAME-$PKG_VERSION.tar.gz"
