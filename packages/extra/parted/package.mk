@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="parted"
-PKG_VERSION="3.5"
+PKG_VERSION="3.6"
 PKG_SITE="http://www.gnu.org/software/parted/"
 PKG_WATCH="https://ftp.gnu.org/gnu/parted/ parted-([\d\.]*)\.tar\.xz"
 PKG_URL="http://ftpmirror.gnu.org/parted/$PKG_NAME-$PKG_VERSION.tar.xz"
