@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="busybox"
-PKG_VERSION="1.36.0"
+PKG_VERSION="1.36.1"
 PKG_SITE="http://www.busybox.net"
 PKG_WATCH="https://busybox.net/downloads/ busybox-([\d\.]*)\.tar\.bz2"
 PKG_URL="http://busybox.net/downloads/$PKG_NAME-$PKG_VERSION.tar.bz2"
