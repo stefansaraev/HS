@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="binutils"
-PKG_VERSION="2.40"
+PKG_VERSION="2.41"
 PKG_SITE="http://www.gnu.org/software/binutils/binutils.html"
 PKG_WATCH="http://ftp.gnu.org/gnu/binutils/ binutils-([\d\.]*)\.tar\.gz"
 PKG_URL="http://ftp.gnu.org/gnu/binutils/$PKG_NAME-$PKG_VERSION.tar.gz"
