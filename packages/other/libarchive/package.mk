@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="libarchive"
-PKG_VERSION="3.6.2"
+PKG_VERSION="3.7.1"
 PKG_SITE="https://www.libarchive.org"
 PKG_WATCH="https://www.libarchive.org/downloads/ .*/libarchive-(.*)\.tar.gz"
 PKG_URL="https://www.libarchive.org/downloads/$PKG_NAME-$PKG_VERSION.tar.gz"
@@ -20,12 +20,12 @@ PKG_CMAKE_OPTS_TARGET="
   -DENABLE_LIBXML2=OFF
   -DENABLE_EXPAT=OFF
   -DENABLE_PCREPOSIX=OFF
-  -DENABLE_LibGCC=OFF
   -DENABLE_CNG=OFF
   -DENABLE_TAR=ON
   -DENABLE_TAR_SHARED=OFF
   -DENABLE_CPIO=OFF
   -DENABLE_CAT=OFF
+  -DENABLE_UNZIP=OFF
   -DENABLE_XATTR=OFF
   -DENABLE_ACL=OFF
   -DENABLE_ICONV=OFF
