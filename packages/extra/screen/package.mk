@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="screen"
-PKG_VERSION="4.9.0"
+PKG_VERSION="4.9.1"
 PKG_SITE="http://www.gnu.org/software/screen/"
 PKG_WATCH="http://ftp.gnu.org/gnu/screen/ screen-([\d\.]*)\.tar\.gz"
 PKG_URL="http://ftp.gnu.org/gnu/screen/$PKG_NAME-$PKG_VERSION.tar.gz"
