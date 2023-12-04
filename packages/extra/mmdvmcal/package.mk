@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="mmdvmcal"
-PKG_VERSION="bc72a8f2b3"
+PKG_VERSION="6eac0a9adc"
 PKG_SITE="https://github.com/g4klx/MMDVMCal/tree/master"
 PKG_URL="https://github.com/g4klx/MMDVMCal/archive/$PKG_VERSION.tar.gz"
 
