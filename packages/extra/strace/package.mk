@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="strace"
-PKG_VERSION="6.5"
+PKG_VERSION="6.6"
 PKG_SITE="https://github.com/strace/strace"
 PKG_WATCH="https://github.com/strace/strace/tags/ .*/v([\d\.]*)\.tar\.gz"
 PKG_URL="https://github.com/strace/strace/releases/download/v$PKG_VERSION/strace-$PKG_VERSION.tar.xz"
