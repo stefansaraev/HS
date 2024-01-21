@@ -11,3 +11,8 @@ PKG_CONFIGURE_OPTS_HOST="
   --disable-shared --enable-static
   --target=$TARGET_NAME
 "
+
+PKG_CONFIGURE_OPTS_TARGET="
+  --disable-shared --enable-static
+  --target=$TARGET_NAME
+"
