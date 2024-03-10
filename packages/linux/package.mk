@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="linux"
-PKG_VERSION="c0169f2c19"
-PKG_SITE="https://github.com/raspberrypi/linux/tree/rpi-6.1.y"
+PKG_VERSION="d3d2454568"
+PKG_SITE="https://github.com/raspberrypi/linux/tree/rpi-6.6.y"
 PKG_URL="https://github.com/raspberrypi/linux/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 
@@ -32,12 +32,12 @@ make_target() {
 makeinstall_target() {
   mkdir -p $PKG_BUILD/.boot
   cp arch/arm/boot/zImage $PKG_BUILD/.boot/kernel.img
-  cp arch/arm/boot/dts/bcm2708-rpi-zero-w.dtb $PKG_BUILD/.boot
-  cp arch/arm/boot/dts/bcm2708-rpi-b-plus.dtb $PKG_BUILD/.boot
-  cp arch/arm/boot/dts/bcm2709-rpi-2-b.dtb $PKG_BUILD/.boot
-  cp arch/arm/boot/dts/bcm2710-rpi-2-b.dtb $PKG_BUILD/.boot
-  cp arch/arm/boot/dts/bcm2710-rpi-3-b.dtb $PKG_BUILD/.boot
-  cp arch/arm/boot/dts/bcm2710-rpi-3-b-plus.dtb $PKG_BUILD/.boot
+  cp arch/arm/boot/dts/broadcom/bcm2708-rpi-zero-w.dtb $PKG_BUILD/.boot
+  cp arch/arm/boot/dts/broadcom/bcm2708-rpi-b-plus.dtb $PKG_BUILD/.boot
+  cp arch/arm/boot/dts/broadcom/bcm2709-rpi-2-b.dtb $PKG_BUILD/.boot
+  cp arch/arm/boot/dts/broadcom/bcm2710-rpi-2-b.dtb $PKG_BUILD/.boot
+  cp arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b.dtb $PKG_BUILD/.boot
+  cp arch/arm/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dtb $PKG_BUILD/.boot
 
   mkdir -p $PKG_BUILD/.boot/overlays
   cp arch/arm/boot/dts/overlays/disable-bt.dtbo $PKG_BUILD/.boot/overlays
