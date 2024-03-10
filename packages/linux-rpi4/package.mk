@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="linux-rpi4"
-PKG_VERSION="c0169f2c19"
-PKG_SITE="https://github.com/raspberrypi/linux/tree/rpi-6.1.y"
+PKG_VERSION="d3d2454568"
+PKG_SITE="https://github.com/raspberrypi/linux/tree/rpi-6.6.y"
 PKG_URL="https://github.com/raspberrypi/linux/archive/$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="toolchain"
 
@@ -24,5 +24,5 @@ make_target() {
 makeinstall_target() {
   mkdir -p $PKG_BUILD/.boot
   cp arch/arm/boot/zImage $PKG_BUILD/.boot/kernel7l.img
-  cp arch/arm/boot/dts/bcm2711-rpi-4-b.dtb $PKG_BUILD/.boot
+  cp arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dtb $PKG_BUILD/.boot
 }
