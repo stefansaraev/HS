@@ -61,6 +61,7 @@ PKG_CONFIGURE_OPTS_TARGET="
   --without-nghttp2
   --without-nghttp3
   --without-zsh-functions-dir
+  --disable-docs
 "
 
 pre_configure_target() {
