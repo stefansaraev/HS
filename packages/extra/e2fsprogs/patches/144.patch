@@ -1,4 +1,4 @@
-From 92f8226c3cf7d84a4937766420a411e68771dfc2 Mon Sep 17 00:00:00 2001
+From eaeee853d474671a3e1365f707302d6bf54a4f77 Mon Sep 17 00:00:00 2001
 From: Mike Cui <cuicui@gmail.com>
 Date: Sun, 7 May 2023 02:46:47 -0700
 Subject: [PATCH] ext2fs: Use 64-bit lseek when SIZEOF_OFF_T is 64bits
@@ -10,12 +10,11 @@ and this results in a compilation failure.
 Instead of checking _FILE_OFFSET_BITS=64, let's just check if
 SIZEOF_OFF_T is SIZEOF_LONG_LONG. Also, SIZEOF_LONG is irrelevant.
 ---
- lib/blkid/llseek.c  | 2 +-
- lib/ext2fs/llseek.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ lib/blkid/llseek.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/lib/blkid/llseek.c b/lib/blkid/llseek.c
-index 59298646f..f24e40b1f 100644
+index 5929864..f24e40b 100644
 --- a/lib/blkid/llseek.c
 +++ b/lib/blkid/llseek.c
 @@ -50,7 +50,7 @@ extern long long llseek(int fd, long long offset, int origin);
@@ -27,16 +26,6 @@ index 59298646f..f24e40b1f 100644
  
  #define llseek lseek
  
-diff --git a/lib/ext2fs/llseek.c b/lib/ext2fs/llseek.c
-index 45f21d09d..713312aa8 100644
---- a/lib/ext2fs/llseek.c
-+++ b/lib/ext2fs/llseek.c
-@@ -51,7 +51,7 @@ extern long long llseek (int fd, long long offset, int origin);
- 
- #else	/* ! HAVE_LLSEEK */
- 
--#if SIZEOF_LONG == SIZEOF_LONG_LONG || _FILE_OFFSET_BITS+0 == 64
-+#if SIZEOF_OFF_T == SIZEOF_LONG_LONG
- 
- #define my_llseek lseek
- 
+-- 
+2.39.2
+
