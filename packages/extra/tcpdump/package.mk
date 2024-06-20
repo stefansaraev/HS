@@ -7,10 +7,10 @@ PKG_WATCH="http://www.tcpdump.org/release/ tcpdump-([\d\.]*)\.tar\.gz"
 PKG_URL="http://www.tcpdump.org/release/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="libpcap"
 
-PKG_CONFIGURE_OPTS_TARGET="
-  --disable-smb
-  --without-smi
-  --with-crypto=no
+PKG_CMAKE_OPTS_TARGET="
+  -DENABLE_SMB=OFF
+  -DWITH_SMI=OFF
+  -DWITH_CRYPTO=OFF
 "
 
 pre_configure_target() {
