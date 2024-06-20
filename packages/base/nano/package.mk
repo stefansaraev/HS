@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="nano"
-PKG_VERSION="7.2"
+PKG_VERSION="8.0"
 PKG_SITE="http://www.nano-editor.org/"
 PKG_WATCH="https://www.nano-editor.org/dist/v(.*)/ nano-([\d\.]+)\.tar\.xz"
-PKG_URL="https://www.nano-editor.org/dist/v7/$PKG_NAME-$PKG_VERSION.tar.gz"
+PKG_URL="https://www.nano-editor.org/dist/v8/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="netbsd-curses"
 
 PKG_CONFIGURE_OPTS_TARGET="
