@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="tellusagent"
-PKG_VERSION="f277a8aa"
-PKG_SITE="https://code.brandmeister.network/r3abm/TellusAgent.git"
-PKG_URL="https://code.brandmeister.network/r3abm/TellusAgent/-/archive/master/TellusAgent-$PKG_VERSION.tar.gz"
+PKG_VERSION="7b0f0219"
+PKG_SITE="https://git.brandmeister.network/public/TellusAgent.git"
+PKG_URL="https://git.brandmeister.network/public/TellusAgent/archive/$PKG_VERSION.tar.gz"
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/bin
