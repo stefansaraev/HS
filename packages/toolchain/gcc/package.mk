@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="gcc"
-PKG_VERSION="13.3.0"
+PKG_VERSION="14.2.0"
 PKG_SITE="http://gcc.gnu.org/"
-PKG_WATCH="ftp://gcc.gnu.org/pub/gcc/releases/gcc-(13\.[\d\.]*)/ gcc-([\d\.]+)\.tar\.xz"
+PKG_WATCH="ftp://gcc.gnu.org/pub/gcc/releases/gcc-(14\.[\d\.]*)/ gcc-([\d\.]+)\.tar\.xz"
 PKG_URL="http://ftp.gnu.org/gnu/gcc/$PKG_NAME-$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_BOOTSTRAP="binutils:host gmp:host mpfr:host mpc:host"
 PKG_DEPENDS_HOST="musl"
