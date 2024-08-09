@@ -18,7 +18,7 @@ PKG_CONFIGURE_OPTS_TARGET="
 "
 
 pre_configure_target() {
-  CFLAGS="$CFLAGS -DTERMINFO"
+  CFLAGS="$CFLAGS -DTERMINFO -Wno-implicit-function-declaration"
   LDFLAGS="$LDFLAGS -static"
 }
 
