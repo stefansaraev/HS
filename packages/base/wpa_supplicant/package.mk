@@ -7,7 +7,7 @@ PKG_WATCH="https://w1.fi/releases/ wpa_supplicant-([\d\.]*)\.tar\.gz"
 PKG_URL="https://w1.fi/releases/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="libnl"
 
-PKG_MAKE_OPTS_TARGET="-C wpa_supplicant LIBDIR=/usr/lib BINDIR=/usr/bin"
+PKG_MAKE_OPTS_TARGET="-C wpa_supplicant"
 
 pre_configure_target() {
   LDFLAGS="$LDFLAGS -static"
