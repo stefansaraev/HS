@@ -4,7 +4,7 @@
 
 deps="
   automake autopoint bc bison bzip2 chrpath cmake cpio devscripts e2fsprogs fakeroot flex
-  g++ gawk gcc gperf intltool libtool-bin lzop texinfo mtools parted patch pkg-config
+  g++ gawk gcc git gperf intltool libtool-bin lzop texinfo mtools parted patch pkg-config
   curl rsync squashfs-tools swig tar unzip wget zip
   libc6-dev libncurses5-dev libssl-dev zlib1g-dev
 "
