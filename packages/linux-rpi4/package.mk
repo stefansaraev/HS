@@ -18,7 +18,7 @@ pre_configure_target() {
 }
 
 make_target() {
-  KBUILD_BUILD_USER="-,-'<" KBUILD_BUILD_HOST="," make zImage dtbs
+  PKG_CONFIG_LIBDIR="" KBUILD_BUILD_USER="-,-'<" KBUILD_BUILD_HOST="," make zImage dtbs
 }
 
 makeinstall_target() {
