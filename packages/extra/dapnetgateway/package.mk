@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="dapnetgateway"
-PKG_VERSION="bb3463b14c"
+PKG_VERSION="bcd41d0ab6"
 PKG_SITE="https://github.com/g4klx/DAPNETGateway/tree/master"
 PKG_URL="https://github.com/g4klx/DAPNETGateway/archive/$PKG_VERSION.tar.gz"
 
