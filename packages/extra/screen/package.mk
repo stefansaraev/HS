@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="screen"
-PKG_VERSION="4.9.1"
+PKG_VERSION="5.0.0"
 PKG_SITE="http://www.gnu.org/software/screen/"
 PKG_WATCH="http://ftp.gnu.org/gnu/screen/ screen-([\d\.]*)\.tar\.gz"
 PKG_URL="http://ftp.gnu.org/gnu/screen/$PKG_NAME-$PKG_VERSION.tar.gz"
@@ -18,11 +18,12 @@ PKG_CONFIGURE_OPTS_TARGET="
 "
 
 pre_configure_target() {
+  rm -rf $PKG_BUILD_SUBDIR
   CFLAGS="$CFLAGS -DTERMINFO -Wno-implicit-function-declaration"
   LDFLAGS="$LDFLAGS -static"
 }
 
 makeinstall_target() {
   mkdir -p $INSTALL/usr/bin
-  cp $PKG_BUILD_SUBDIR/screen $INSTALL/usr/bin
+  cp $PKG_BUILD/screen $INSTALL/usr/bin
 }
