@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="libpcap"
-PKG_VERSION="1.10.4"
+PKG_VERSION="1.10.5"
 PKG_SITE="http://www.tcpdump.org/"
 PKG_WATCH="http://www.tcpdump.org/release/ libpcap-([\d\.]*)\.tar\.gz"
 PKG_URL="http://www.tcpdump.org/release/$PKG_NAME-$PKG_VERSION.tar.gz"
