@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="nano"
-PKG_VERSION="8.1"
+PKG_VERSION="8.2"
 PKG_SITE="http://www.nano-editor.org/"
 PKG_WATCH="https://www.nano-editor.org/dist/v(.*)/ nano-([\d\.]+)\.tar\.xz"
 PKG_URL="https://www.nano-editor.org/dist/v8/$PKG_NAME-$PKG_VERSION.tar.gz"
