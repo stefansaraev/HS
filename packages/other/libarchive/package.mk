@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="libarchive"
-PKG_VERSION="3.7.4"
+PKG_VERSION="3.7.5"
 PKG_SITE="https://www.libarchive.org"
 PKG_WATCH="https://www.libarchive.org/downloads/ .*/libarchive-(.*)\.tar.gz"
 PKG_URL="https://www.libarchive.org/downloads/$PKG_NAME-$PKG_VERSION.tar.gz"
