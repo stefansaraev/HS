@@ -9,7 +9,7 @@ disable_touchscreen=1
 
 start_file=start.elf
 fixup_file=fixup.dat
-kernel=kernel.img
+kernel=kernel7l.img
 
 initramfs init.xz followkernel
 
@@ -21,7 +21,10 @@ temp_limit=75
 
 dtoverlay=disable-bt
 
-[pi4]
-kernel=kernel7l.img
+[pi0]
+kernel=kernel.img
+
+[pi1]
+kernel=kernel.img
 
 [all]
