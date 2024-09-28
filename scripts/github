@@ -76,7 +76,7 @@ if [ -f "$1" ] ; then
   if [ ! "$PKG_VERSION" = "$REV" ] ; then
     NEEDUPD="*"
   fi
-  printf "* %-24s old: %-12s new: %-12s %-10s\n" "$PKG_NAME" "$PKG_VERSION" "$REV" "$NEEDUPD"
+  printf "* %-26s old: %-12s new: %-12s %-10s\n" "$PKG_NAME" "$PKG_VERSION" "$REV" "$NEEDUPD"
 
   if [ ! "$PKG_VERSION" = "$REV" -a "$2" != "1" ] ; then
     echo "[mkpkg] Updating $1"
