@@ -19,12 +19,13 @@ PKG_CONFIGURE_OPTS_TARGET="
   --disable-libipq
   --disable-bpf-compiler
   --disable-nfsynproxy
-  --enable-nftables
+  --disable-nftables
   --disable-connlabel
   --with-xt-lock-name=/var/run/xtables.lock
 "
 
 post_makeinstall_target() {
   rm -rf $INSTALL/etc
-  rm -f $INSTALL/usr/bin/iptables-xml
+  rm -f $INSTALL/usr/bin/iptables-*
+  rm -f $INSTALL/usr/bin/ip6tables-*
 }
