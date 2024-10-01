@@ -27,4 +27,7 @@ kernel=kernel.img
 [pi1]
 kernel=kernel.img
 
+[pi02]
+kernel=kernel7l.img
+
 [all]
