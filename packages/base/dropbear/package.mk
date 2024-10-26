@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="dropbear"
-PKG_VERSION="2024.85"
+PKG_VERSION="2024.86"
 PKG_SITE="https://matt.ucc.asn.au/dropbear/dropbear.html"
 PKG_WATCH="https://matt.ucc.asn.au/dropbear/releases/ dropbear-([\d\.]*)\.tar\.bz2"
 PKG_URL="https://matt.ucc.asn.au/dropbear/releases/$PKG_NAME-$PKG_VERSION.tar.bz2"
