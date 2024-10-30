@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="libnl"
-PKG_VERSION="3_10_0"
+PKG_VERSION="3_11_0"
 PKG_SITE="https://github.com/thom311/libnl"
 PKG_WATCH="https://github.com/thom311/libnl/tags/ /thom311/libnl/archive/refs/tags/libnl(.*)\.tar\.gz"
 PKG_URL="https://github.com/thom311/$PKG_NAME/releases/download/${PKG_NAME}${PKG_VERSION}/$PKG_NAME-${PKG_VERSION//_/.}.tar.gz"
