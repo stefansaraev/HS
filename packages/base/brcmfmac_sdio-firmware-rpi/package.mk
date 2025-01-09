@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="brcmfmac_sdio-firmware-rpi"
-PKG_VERSION="4b356e134e"
+PKG_VERSION="a6ed59a078"
 PKG_SITE="https://github.com/RPi-Distro/firmware-nonfree/tree/bookworm"
 PKG_URL="https://github.com/RPi-Distro/firmware-nonfree/archive/$PKG_VERSION.tar.gz"
 PKG_NEED_REBUILD="initramfs"
