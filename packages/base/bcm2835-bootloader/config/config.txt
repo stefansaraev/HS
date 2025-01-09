@@ -16,7 +16,10 @@ initramfs init.xz followkernel
 dtparam=i2c_arm=on
 enable_uart=1
 
-initial_turbo=30
+initial_turbo=0
+avoid_warnings=1
+arm_freq=700
+
 temp_limit=75
 
 dtoverlay=disable-bt
