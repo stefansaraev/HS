@@ -10,13 +10,6 @@
 - Raspberry Pi 3 Model B+
 - Raspberry Pi 4 Model B
 
-#### Supported Modems / Displays
-
-- Any MMDVM via UART (ZUMspot, MMDVM HS Hat, ...)
-- Any MMDVM via USB (cdc_acm, ftdi_sio, ch341, pl2303, ...)
-- 0.96" i2c OLED
-- Nextion
-
 #### BUILD
 
 ```
