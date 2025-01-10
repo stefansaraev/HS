@@ -40,4 +40,5 @@ makeinstall_target() {
 
   mkdir -p $PKG_BUILD/.boot/overlays
   cp arch/arm/boot/dts/overlays/disable-bt.dtbo $PKG_BUILD/.boot/overlays
+  cp arch/arm/boot/dts/overlays/sx1255.dtbo $PKG_BUILD/.boot/overlays
 }
