@@ -13,14 +13,18 @@ make_init() {
 makeinstall_init() {
   mkdir -p $INSTALL/lib/firmware/brcm
   cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43430-sdio.bin $INSTALL/lib/firmware/brcm
+  cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43430-sdio.clm_blob $INSTALL/lib/firmware/brcm
   cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43430-sdio.txt $INSTALL/lib/firmware/brcm
 
   cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43436-sdio.bin $INSTALL/lib/firmware/brcm
+  cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43436-sdio.clm_blob $INSTALL/lib/firmware/brcm
   cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43436-sdio.txt $INSTALL/lib/firmware/brcm
   cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43436s-sdio.bin $INSTALL/lib/firmware/brcm
+  cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43430b0-sdio.raspberrypi,model-zero-2-w.clm_blob $INSTALL/lib/firmware/brcm/brcmfmac43436s-sdio.clm_blob
   cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43436s-sdio.txt $INSTALL/lib/firmware/brcm
 
   ln -sf ../cypress/cyfmac43455-sdio-minimal.bin $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43455-sdio.bin
   cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43455-sdio.bin $INSTALL/lib/firmware/brcm
+  cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43455-sdio.clm_blob $INSTALL/lib/firmware/brcm
   cp -i $PKG_BUILD/debian/config/brcm80211/brcm/brcmfmac43455-sdio.txt $INSTALL/lib/firmware/brcm
 }
