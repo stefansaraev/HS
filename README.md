@@ -2,10 +2,8 @@
 
 #### Supported RPis
 
-- Raspberry Pi Zero W
 - Raspberry Pi Zero 2 W
-- Raspberry Pi Model B+
-- Raspberry Pi 2 Model B
+- Raspberry Pi 2 Model B Rev 1.2
 - Raspberry Pi 3 Model B
 - Raspberry Pi 3 Model B+
 - Raspberry Pi 4 Model B

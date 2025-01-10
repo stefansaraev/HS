@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 case $TARGET_CPU in
-  arm1176jzf-s)
-    TARGET_SUBARCH=armv6zk
+  cortex-a53)
+    TARGET_SUBARCH=armv8-a
     TARGET_ABI=eabihf
     TARGET_EXTRA_FLAGS="-mcpu=$TARGET_CPU"
     TARGET_FPU_FLAGS="-mfloat-abi=$TARGET_FLOAT -mfpu=$TARGET_FPU"

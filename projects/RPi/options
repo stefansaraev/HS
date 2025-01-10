@@ -1,6 +1,6 @@
 # target architecture
 TARGET_ARCH="arm"
-TARGET_CPU="arm1176jzf-s"
+TARGET_CPU="cortex-a53"
 
 TARGET_FLOAT="hard"
-TARGET_FPU="vfp"
+TARGET_FPU="neon-vfpv4"
