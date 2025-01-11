@@ -11,10 +11,13 @@ post_unpack() {
 }
 
 PKG_CONFIGURE_OPTS_TARGET="
+  --disable-protochain
   --disable-ipv6
   --disable-usb
+  --disable-netmap
   --disable-bluetooth
   --disable-dbus
+  --disable-rdma
   --with-pcap=linux
   --without-libnl
 "

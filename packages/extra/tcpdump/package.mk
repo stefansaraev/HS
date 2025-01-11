@@ -8,9 +8,11 @@ PKG_URL="http://www.tcpdump.org/release/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_TARGET="libpcap"
 
 PKG_CMAKE_OPTS_TARGET="
-  -DENABLE_SMB=OFF
   -DWITH_SMI=OFF
   -DWITH_CRYPTO=OFF
+  -DWITH_CAPSICUM=OFF
+  -DWITH_CAP_NG=OFF
+  -DENABLE_SMB=OFF
 "
 
 pre_configure_target() {
