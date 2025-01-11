@@ -11,7 +11,6 @@ post_unpack() {
 }
 
 PKG_CONFIGURE_OPTS_TARGET="
-  --disable-shared --enable-static
   --enable-ipv6
   --disable-usb
   --disable-bluetooth

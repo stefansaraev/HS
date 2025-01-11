@@ -8,6 +8,5 @@ PKG_URL="http://ftp.gnu.org/gnu/mpc/$PKG_NAME-$PKG_VERSION.tar.gz"
 PKG_DEPENDS_HOST="gmp:host mpfr:host"
 
 PKG_CONFIGURE_OPTS_HOST="
-  --disable-shared --enable-static
   --target=$TARGET_NAME
 "

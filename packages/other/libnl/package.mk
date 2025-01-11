@@ -7,7 +7,6 @@ PKG_WATCH="https://github.com/thom311/libnl/tags/ /thom311/libnl/archive/refs/ta
 PKG_URL="https://github.com/thom311/$PKG_NAME/releases/download/${PKG_NAME}${PKG_VERSION}/$PKG_NAME-${PKG_VERSION//_/.}.tar.gz"
 
 PKG_CONFIGURE_OPTS_TARGET="
-  --enable-static --disable-shared
   --disable-cli
   --disable-debug
 "

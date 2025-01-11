@@ -40,6 +40,7 @@ CONFIGURE_OPTS_HOST="
   --sysconfdir=$TOOLCHAIN/etc
   --enable-silent-rules
   --disable-dependency-tracking
+  --disable-shared --enable-static
 "
 CONFIGURE_OPTS_BOOTSTRAP="$CONFIGURE_OPTS_HOST"
 
@@ -50,6 +51,7 @@ CONFIGURE_OPTS_TARGET="
   --sysconfdir=/etc
   --enable-silent-rules
   --disable-dependency-tracking
+  --disable-shared --enable-static
 "
 CONFIGURE_OPTS_INIT="$CONFIGURE_OPTS_TARGET"
 
