@@ -11,7 +11,7 @@ post_unpack() {
 }
 
 PKG_CONFIGURE_OPTS_TARGET="
-  --enable-ipv6
+  --disable-ipv6
   --disable-usb
   --disable-bluetooth
   --disable-dbus
