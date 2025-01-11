@@ -7,6 +7,7 @@ PKG_WATCH="https://www.libarchive.org/downloads/ .*/libarchive-(.*)\.tar.gz"
 PKG_URL="https://www.libarchive.org/downloads/$PKG_NAME-$PKG_VERSION.tar.gz"
 
 PKG_CMAKE_OPTS_TARGET="
+  -DBUILD_SHARED_LIBS=OFF
   -DENABLE_MBEDTLS=OFF
   -DENABLE_NETTLE=OFF
   -DENABLE_OPENSSL=OFF
