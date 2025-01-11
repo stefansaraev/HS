@@ -9,7 +9,7 @@ disable_touchscreen=1
 
 start_file=start.elf
 fixup_file=fixup.dat
-kernel=kernel7l.img
+kernel=kernel.img
 
 initramfs init.xz followkernel
 
