@@ -6,14 +6,12 @@
 
 case "$1" in
   start)
-    if [ -f $CONFIG ] ; then
-      (
-        while : ; do
-          sleep 2
-          zerotier-one &>/dev/null
-        done
-      ) &
-    fi
+    (
+      while : ; do
+        sleep 2
+        zerotier-one &>/dev/null
+      done
+    ) &
     ;;
   stop)
     pkill -9 -f 'zerotier-one'
