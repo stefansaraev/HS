@@ -1,5 +1,11 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
+TARGET_ARCH="arm"
+TARGET_CPU="cortex-a53"
+TARGET_CPU_FLAGS="+crc"
+TARGET_FLOAT="hard"
+TARGET_FPU="neon-fp-armv8"
+
 case $TARGET_CPU in
   cortex-a53)
     TARGET_SUBARCH=armv8-a

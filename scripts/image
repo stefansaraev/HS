@@ -36,10 +36,6 @@ scripts/install base
 echo "HS - $DISTRO_VERSION" >> $INSTALL_IMAGE/etc/issue
 ln -sf issue $INSTALL_IMAGE/etc/motd
 
-if [ -d "$PROJECT_DIR/fs-target" ]; then
-  cp -PR $PROJECT_DIR/fs-target/* $INSTALL_IMAGE
-fi
-
 for SERVICE in $INSTALL_IMAGE/etc/init.d/* ; do
   SEQ="$(grep SEQ= $SERVICE | cut -d= -f2)"
   if [ -n "$SEQ" ] ; then

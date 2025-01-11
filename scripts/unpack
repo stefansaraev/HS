@@ -52,8 +52,7 @@ else
   mkdir -p $PKG_BUILD && tar xf "sources/$1/$SOURCE_NAME" -C $PKG_BUILD --strip-components=1
 fi
 
-for i in $PKG_DIR/patches/*.patch \
-         $PROJECT_DIR/packages/$PKG_NAME/patches/*.patch; do
+for i in $PKG_DIR/patches/*.patch ; do
   if [ -f "$i" ]; then
     printf "%${BUILD_INDENT}c ${boldgreen}APPLY PATCH${endcolor}    $i\n" ' '
     cat $i | patch -d "$PKG_BUILD" -p1

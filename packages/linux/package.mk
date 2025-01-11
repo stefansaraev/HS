@@ -9,7 +9,7 @@ PKG_DEPENDS_TARGET="toolchain"
 MAKEFLAGS="$MAKEFLAGS LDFLAGS= CROSS_COMPILE=${TARGET_NAME}-"
 
 post_unpack() {
-  cp $PROJECT_DIR/packages/$PKG_NAME/linux.$TARGET_ARCH.conf $PKG_BUILD/.config
+  cp $PKG_DIR/config/defconfig $PKG_BUILD/.config
   sed -e "s|^ARCH[[:space:]]*?=.*$|ARCH = $TARGET_KERNEL_ARCH|" -i $PKG_BUILD/Makefile
 }
 
